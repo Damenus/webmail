@@ -3,39 +3,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WebMail.Models;
 
 namespace WebMail.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class MailsController : Controller
     {
-        // GET api/values
+        private readonly WebMailContext _context;
+
+        public MailsController(WebMailContext context)
+        {
+            _context = context;
+        }
+
+        // GET api/mails
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _context.Mail
+                .Select(mail => mail.Title);
         }
 
-        // GET api/values/5
+        // GET api/mails/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            return _context.Mail
+                .Where(mail => mail.ID == id)
+                .Select(mail => mail.Title)
+                .First();
         }
 
-        // POST api/values
+        // POST api/mails
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT api/values/5
+        // PUT api/mails/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/values/5
+        // DELETE api/mails/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

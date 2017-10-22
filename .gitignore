@@ -295,7 +295,7 @@ __pycache__/
 # Build Results of an ATL Project
 
 # .NET Core
-**/Properties/launchSettings.json
+# **/Properties/launchSettings.json
 
 
 # Chutzpah Test files
