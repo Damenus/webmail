@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMail", "WebMail\WebMail.csproj", "{EB4995C1-BCB9-4EF9-B276-0A81FC92C371}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMail", "WebMail\WebMail.csproj", "{2AF34D36-612B-430E-9FC0-C664E88705FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EB4995C1-BCB9-4EF9-B276-0A81FC92C371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB4995C1-BCB9-4EF9-B276-0A81FC92C371}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB4995C1-BCB9-4EF9-B276-0A81FC92C371}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB4995C1-BCB9-4EF9-B276-0A81FC92C371}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AF34D36-612B-430E-9FC0-C664E88705FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AF34D36-612B-430E-9FC0-C664E88705FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AF34D36-612B-430E-9FC0-C664E88705FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AF34D36-612B-430E-9FC0-C664E88705FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC547AD9-A611-41CA-871B-3DB1EE113381}
 	EndGlobalSection
 EndGlobal
