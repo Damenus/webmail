@@ -10,9 +10,9 @@ namespace WebMail.Controllers
     [Route("api/[controller]")]
     public class MailsController : Controller
     {
-        private readonly WebMailContext _context;
+        private readonly MailContext _context;
 
-        public MailsController(WebMailContext context)
+        public MailsController(MailContext context)
         {
             _context = context;
         }

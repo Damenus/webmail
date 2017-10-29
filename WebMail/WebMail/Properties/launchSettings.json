@@ -3,15 +3,15 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:58840/",
-      "sslPort": 0
+      "applicationUrl": "http://localhost:13843/",
+      "sslPort": 44361
     }
   },
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/mails",
+      "launchUrl": "https://localhost:44361/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -19,11 +19,10 @@
     "WebMail": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/mails",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:58841/"
+      "applicationUrl": "http://localhost:13844/"
     }
   }
 }

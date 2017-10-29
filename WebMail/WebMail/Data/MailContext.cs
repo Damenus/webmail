@@ -4,12 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace WebMail.Models
 {
-    public class WebMailContext : DbContext
+    public class MailContext : DbContext
     {
-        public WebMailContext(DbContextOptions<WebMailContext> options)
+        public MailContext (DbContextOptions<MailContext> options)
             : base(options)
         {
         }

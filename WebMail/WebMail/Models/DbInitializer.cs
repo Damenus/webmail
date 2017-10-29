@@ -6,7 +6,7 @@ namespace WebMail
 {
     internal class DbInitializer
     {
-        internal static void Initialize(WebMailContext context)
+        internal static void Initialize(MailContext context)
         {
             context.Database.EnsureCreated();
 

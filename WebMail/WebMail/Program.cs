@@ -28,7 +28,7 @@ namespace WebMail
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<WebMailContext>();
+                    var context = services.GetRequiredService<MailContext>();
                     DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
