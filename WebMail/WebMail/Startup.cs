@@ -40,6 +40,13 @@ namespace WebMail
 
             services.AddDbContext<MailContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MailContext")));
+
+            // For SSO login using google account
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
