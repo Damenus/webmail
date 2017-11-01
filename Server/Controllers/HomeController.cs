@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using AspNetCoreSpa.Server.Entities;
+using WebMail.Server.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace AspNetCoreSpa.Server.Controllers
+namespace WebMail.Server.Controllers
 {
     public class HomeController : Controller
     {

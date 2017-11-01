@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 
-namespace AspNetCoreSpa.Server.SignalR
+namespace WebMail.Server.SignalR
 {
     public class Chat : Hub
     {

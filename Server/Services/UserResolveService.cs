@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http;
 
-namespace AspNetCoreSpa.Server.Services
+namespace WebMail.Server.Services
 {
     public class UserResolverService
     {

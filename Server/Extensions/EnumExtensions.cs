@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AspNetCoreSpa.Server.Extensions
+namespace WebMail.Server.Extensions
 {
     public static class EnumExtensions
     {

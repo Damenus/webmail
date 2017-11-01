@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.Twitter;
 
-namespace AspNetCoreSpa.Server.Extensions
+namespace WebMail.Server.Extensions
 {
     public static class ApplicationBuilderExtensions
     {

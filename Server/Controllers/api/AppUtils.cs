@@ -4,14 +4,14 @@ using System.Threading.Tasks;
 using AspNet.Security.OpenIdConnect.Extensions;
 using AspNet.Security.OpenIdConnect.Primitives;
 using AspNet.Security.OpenIdConnect.Server;
-using AspNetCoreSpa.Server.Entities;
+using WebMail.Server.Entities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using OpenIddict.Core;
 
-namespace AspNetCoreSpa.Server.Controllers.api
+namespace WebMail.Server.Controllers.api
 {
     public class AppUtils
     {

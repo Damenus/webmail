@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace AspNetCoreSpa.Server.Extensions
+namespace WebMail.Server.Extensions
 {
     public static class ModelStateExtensions
     {

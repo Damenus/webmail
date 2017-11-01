@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication;
 
-namespace AspNetCoreSpa.Server.ViewModels.ManageViewModels
+namespace WebMail.Server.ViewModels.ManageViewModels
 {
     public class ManageLoginsViewModel
     {

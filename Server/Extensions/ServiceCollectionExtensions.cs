@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using System.Security.Cryptography.X509Certificates;
-using AspNetCoreSpa.Server.Entities;
-using AspNetCoreSpa.Server.Filters;
-using AspNetCoreSpa.Server.Services;
+using WebMail.Server.Entities;
+using WebMail.Server.Filters;
+using WebMail.Server.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Net;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
-namespace AspNetCoreSpa.Server.Extensions
+namespace WebMail.Server.Extensions
 {
     public static class ServiceCollectionExtensions
     {

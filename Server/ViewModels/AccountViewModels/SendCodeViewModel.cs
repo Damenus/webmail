@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace AspNetCoreSpa.Server.ViewModels.AccountViewModels
+namespace WebMail.Server.ViewModels.AccountViewModels
 {
     public class SendCodeViewModel
     {

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace AspNetCoreSpa.Server.ViewModels.AccountViewModels
+namespace WebMail.Server.ViewModels.AccountViewModels
 {
     public class VerifyCodeViewModel
     {

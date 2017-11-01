@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AspNetCoreSpa.Migrations
+namespace WebMail.Migrations
 {
     public partial class Initial : Migration
     {

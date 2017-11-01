@@ -1,17 +1,17 @@
 using System.Linq;
 using System.Threading.Tasks;
-using AspNetCoreSpa.Server.Entities;
-using AspNetCoreSpa.Server.Extensions;
-using AspNetCoreSpa.Server.ViewModels.AccountViewModels;
+using WebMail.Server.Entities;
+using WebMail.Server.Extensions;
+using WebMail.Server.ViewModels.AccountViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using AspNetCoreSpa.Server.Services;
+using WebMail.Server.Services;
 using Microsoft.Extensions.Options;
 
-namespace AspNetCoreSpa.Server.Controllers.api
+namespace WebMail.Server.Controllers.api
 {
     [Authorize]
     [Route("api/[controller]")]

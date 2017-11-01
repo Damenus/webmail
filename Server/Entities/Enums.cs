@@ -1,4 +1,4 @@
-namespace AspNetCoreSpa.Server.Entities
+namespace WebMail.Server.Entities
 {
     public enum ExternalLoginStatus
     {

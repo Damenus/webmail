@@ -1,4 +1,4 @@
-namespace AspNetCoreSpa.Server.ViewModels.ManageViewModels
+namespace WebMail.Server.ViewModels.ManageViewModels
 {
     public class FactorViewModel
     {

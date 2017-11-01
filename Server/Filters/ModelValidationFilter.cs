@@ -1,9 +1,9 @@
-using AspNetCoreSpa.Server.Extensions;
+using WebMail.Server.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
 
-namespace AspNetCoreSpa.Server.Filters
+namespace WebMail.Server.Filters
 {
     public class ModelValidationFilter : IActionFilter
     {

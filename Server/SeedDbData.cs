@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AspNetCoreSpa.Server.Entities;
+using WebMail.Server.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AspNetCoreSpa.Server
+namespace WebMail.Server
 {
     public class SeedDbData
     {

@@ -1,4 +1,4 @@
-namespace AspNetCoreSpa.Server.ViewModels
+namespace WebMail.Server.ViewModels
 {
     public class ContentVm
     {

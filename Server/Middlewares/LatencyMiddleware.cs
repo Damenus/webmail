@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 
-namespace AspNetCoreSpa.Server
+namespace WebMail.Server
 {
     public static class IApplicationBuilderExtensions
     {

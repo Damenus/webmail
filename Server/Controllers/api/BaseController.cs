@@ -1,8 +1,8 @@
-using AspNetCoreSpa.Server.Filters;
+using WebMail.Server.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetCoreSpa.Server.Controllers.api
+namespace WebMail.Server.Controllers.api
 {
     [Authorize]
     [ServiceFilter(typeof(ApiExceptionFilter))]

@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
-using AspNetCoreSpa.Server.Extensions;
+using WebMail.Server.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AspNetCoreSpa.Server
+namespace WebMail.Server
 {
     public class ProcessDbCommands
     {

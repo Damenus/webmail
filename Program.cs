@@ -1,10 +1,10 @@
 ﻿using System.IO;
-using AspNetCoreSpa.Server;
+using WebMail.Server;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore;
 
-namespace AspNetCoreSpa
+namespace WebMail
 {
     public class Program
     {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using AspNet.Security.OpenIdConnect.Extensions;
 using AspNet.Security.OpenIdConnect.Primitives;
 using AspNet.Security.OpenIdConnect.Server;
-using AspNetCoreSpa.Server.Entities;
+using WebMail.Server.Entities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +14,7 @@ using OpenIddict.Core;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace AspNetCoreSpa.Server.Controllers.api
+namespace WebMail.Server.Controllers.api
 {
     public class AuthorizationController : Controller
     {

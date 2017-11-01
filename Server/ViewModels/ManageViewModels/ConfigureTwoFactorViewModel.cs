@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace AspNetCoreSpa.Server.ViewModels.ManageViewModels
+namespace WebMail.Server.ViewModels.ManageViewModels
 {
     public class ConfigureTwoFactorViewModel
     {

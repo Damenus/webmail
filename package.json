@@ -10,12 +10,12 @@
     "typescript2",
     "bootstrap4"
   ],
-  "repository": "git+https://github.com/asadsahi/AspNetCoreSpa.git",
+  "repository": "git+https://github.com/asadsahi/WebMail.git",
   "author": "Asad Sahi <asadazmat@gmail.com>",
   "scripts": {
     "tslint": "tslint",
     "protractor": "protractor",
-    "clean": "rimraf AspNetCoreSpa.db bin ClientApp/dist wwwroot/dist",
+    "clean": "rimraf WebMail.db bin ClientApp/dist wwwroot/dist",
     "dev:watch": "set ASPNETCORE_ENVIRONMENT=Development && dotnet watch run",
     "test": "npm run lint && karma start",
     "test:watch": "npm run test -- --auto-watch --no-single-run",

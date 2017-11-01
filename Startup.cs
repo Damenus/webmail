@@ -2,14 +2,14 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using AspNetCoreSpa.Server;
-using AspNetCoreSpa.Server.Extensions;
+using WebMail.Server;
+using WebMail.Server.Extensions;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Threading.Tasks;
 using System.Net;
-using AspNetCoreSpa.Server.SignalR;
+using WebMail.Server.SignalR;
 
-namespace AspNetCoreSpa
+namespace WebMail
 {
     public class Startup
     {
@@ -77,7 +77,7 @@ namespace AspNetCoreSpa
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "AspNetCoreSpa", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "WebMail", Version = "v1" });
             });
         }
         public void Configure(IApplicationBuilder app)

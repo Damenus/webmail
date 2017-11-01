@@ -1,8 +1,8 @@
-﻿using AspNetCoreSpa.Server.Entities;
+﻿using WebMail.Server.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace AspNetCoreSpa.Server
+namespace WebMail.Server
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int>
     {

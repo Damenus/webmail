@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AspNetCoreSpa.Server.Filters
+namespace WebMail.Server.Filters
 {
     /// <summary>
     /// A collection of ValidationError objects that is used to collect

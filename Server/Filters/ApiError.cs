@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Linq;
 
-namespace AspNetCoreSpa.Server.Filters
+namespace WebMail.Server.Filters
 {
 
     public class ApiError

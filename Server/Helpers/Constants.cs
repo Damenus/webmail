@@ -1,5 +1,5 @@
 
-namespace AspNetCoreSpa.Server
+namespace WebMail.Server
 {
     public static class GlobalText
     {

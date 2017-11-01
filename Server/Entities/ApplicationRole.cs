@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
-namespace AspNetCoreSpa.Server.Entities
+namespace WebMail.Server.Entities
 {
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationRole : IdentityRole<int>

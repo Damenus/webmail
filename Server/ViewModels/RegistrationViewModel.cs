@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AspNetCoreSpa.Server.ViewModels
+namespace WebMail.Server.ViewModels
 {
     public class RegistrationViewModel
     {

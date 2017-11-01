@@ -1,14 +1,14 @@
 using System.Linq;
 using System.Threading.Tasks;
-using AspNetCoreSpa.Server.Entities;
-using AspNetCoreSpa.Server.ViewModels.ManageViewModels;
+using WebMail.Server.Entities;
+using WebMail.Server.ViewModels.ManageViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using AspNetCoreSpa.Server.Services;
+using WebMail.Server.Services;
 
-namespace AspNetCoreSpa.Server.Controllers.api
+namespace WebMail.Server.Controllers.api
 {
     [Authorize]
     public class ManageController : BaseController
