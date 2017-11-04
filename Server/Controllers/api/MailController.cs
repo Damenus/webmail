@@ -58,6 +58,7 @@ namespace WebMail.Server.Controllers.api
             _dbContext.SaveChanges();
         }
 
+        [HttpGet]
         public IEnumerable<Mail> GetMails()
         {
             return _dbContext.Mails;
