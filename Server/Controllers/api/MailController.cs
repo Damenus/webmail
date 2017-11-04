@@ -64,13 +64,31 @@ namespace WebMail.Server.Controllers.api
             return _dbContext.Mails;
         }
 
-        public bool UpdateInboxMessages()
+        [HttpPut("UpdateInboxMails")]
+        public IActionResult UpdateInboxMails()
         {
+            ImapClient imapClient = new ImapClient();
+
             try
             {
-                ImapClient imapClient = new ImapClient();
                 imapClient.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
+            }
+            catch (Exception ex)
+            {
+                return Content("Error while trying to connect IMAP server: {0}", ex.Message);
+            }
+
+            try
+            {
                 imapClient.Authenticate("webmail2017.dev", "12341234xx");
+            }
+            catch (Exception ex)
+            {
+                return Content("IMAP authentication error: {0}", ex.Message);
+            }
+
+            try
+            {
                 imapClient.Inbox.Open(FolderAccess.ReadOnly);
                 var uidsFromServer = imapClient.Inbox.Search(SearchQuery.All);
                 var uidsFromDB = GetMails().Select(m => m.UniqueID);
@@ -93,13 +111,13 @@ namespace WebMail.Server.Controllers.api
                 }
 
                 imapClient.Disconnect(true);
-                return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("An error occurred while trying to update inbox mails: {0}", ex.Message);
-                return false;
+                return Content("Error while trying to download mails from IMAP server: {0}", ex.Message);
             }
+
+            return Content("UpdateInboxMails completed successfully.");
         }
     }
 }
