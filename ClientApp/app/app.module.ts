@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
+import { MailsModule } from './mails/mails.module';
 
 import { routing } from './app.routes';
 import { AppService } from './app.service';
@@ -16,6 +17,7 @@ import { AppService } from './app.service';
         CoreModule.forRoot(),
         SharedModule.forRoot(),
         HomeModule,
+        MailsModule,
     ],
     providers: [
         AppService

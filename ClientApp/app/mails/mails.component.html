@@ -1,0 +1,18 @@
+<div class="btn-group">
+    <button type="button" class="btn btn-primary" (click)="sortBy('Title_Down')" >Sort by name down</button>
+    <button type="button" class="btn btn-primary" (click)="sortBy('Title_Up')">Sort by name up</button>
+
+</div>
+<ul>
+    <li *ngFor="let mail of mails">        
+        <div class="media">
+            <div class="media-left">
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">{{mail.title}}</h4>
+                <p>{{mail.body}}</p>
+            </div>
+        </div>
+        <hr>
+    </li>
+</ul>
