@@ -19,9 +19,6 @@ import { FooterComponent } from './layout/footer.component';
 
 import { UppercasePipe } from './pipes/uppercase.pipe';
 
-// Services
-//import { ContentService } from './services/content.service';
-//import { ApiTranslationLoader } from './services/api-translation-loader.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);

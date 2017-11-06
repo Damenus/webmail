@@ -5,5 +5,7 @@
   "Login": "Login",
   "Logout": "Logout",
   "Register": "Register",
-  "Admin": "Admin"
+  "Admin": "Admin",
+  "Sort_by_name_asc": "Sort by name ascending",
+  "Sort_by_name_desc": "Sort by name descending"
 }
