@@ -22,7 +22,7 @@ namespace WebMail.Server.Controllers.api
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    [AllowAnonymous]
+    [Authorize]
     public class MailController : BaseController
     {
         private static List<Mail> MAILS = new List<Mail>
