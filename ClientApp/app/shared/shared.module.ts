@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateService, TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { PageHeadingComponent } from './directives/page-heading.directive';
@@ -74,6 +74,16 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 })
 export class SharedModule {
+
+
+    constructor(private translate: TranslateService) {
+        translate.addLangs(["pl", "en"]);
+        translate.setDefaultLang('en');
+
+        let browserLang = translate.getBrowserLang();
+        this.translate.use(browserLang.match(/en|pl/) ? browserLang : 'en');
+    }
+
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,

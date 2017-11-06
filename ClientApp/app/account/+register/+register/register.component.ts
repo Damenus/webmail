@@ -6,6 +6,7 @@ import { RegisterModel } from '../../../core/models/register-model';
 import { ControlBase } from '../../../shared/forms/control-base';
 import { ControlTextbox } from '../../../shared/forms/control-textbox';
 import { AccountService } from '../../../core/services/account.service';
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
     selector: 'appc-register',
@@ -14,8 +15,9 @@ import { AccountService } from '../../../core/services/account.service';
 export class RegisterComponent implements OnInit {
     public errors: string[] = [];
     public controls: Array<ControlBase<any>>;
+    public register_button_translation: string;
 
-    constructor(public accountService: AccountService, public router: Router, public route: ActivatedRoute) { }
+    constructor(public accountService: AccountService, public router: Router, public route: ActivatedRoute, private translate: TranslateService) { }
 
     public register(model: RegisterModel): void {
         this.accountService.register(model)
@@ -28,11 +30,20 @@ export class RegisterComponent implements OnInit {
     };
 
     public ngOnInit() {
+
+        //Get the translated strings
+        let register_translation: any;
+        this.translate.get('REGISTER_FORM').subscribe(result => {
+            register_translation = result;
+        });
+                
+        this.register_button_translation = register_translation.Register;
+        
         const controls: Array<ControlBase<any>> = [
             new ControlTextbox({
                 key: 'username',
-                label: 'Username',
-                placeholder: 'Username',
+                label: register_translation.Username,
+                placeholder: register_translation.Username,
                 value: '',
                 type: 'textbox',
                 required: true,
@@ -40,8 +51,8 @@ export class RegisterComponent implements OnInit {
             }),
             new ControlTextbox({
                 key: 'firstname',
-                label: 'Firstname',
-                placeholder: 'Firstname',
+                label: register_translation.Firstname,
+                placeholder: register_translation.Firstname,
                 value: '',
                 type: 'textbox',
                 required: true,
@@ -49,8 +60,8 @@ export class RegisterComponent implements OnInit {
             }),
             new ControlTextbox({
                 key: 'lastname',
-                label: 'Lastname',
-                placeholder: 'Lastname',
+                label: register_translation.Lastname,
+                placeholder: register_translation.Lastname,
                 value: '',
                 type: 'textbox',
                 required: true,
@@ -58,8 +69,8 @@ export class RegisterComponent implements OnInit {
             }),
             new ControlTextbox({
                 key: 'email',
-                label: 'Email',
-                placeholder: 'Email',
+                label: register_translation.Email,
+                placeholder: register_translation.Email,
                 value: '',
                 type: 'email',
                 required: true,
@@ -67,8 +78,8 @@ export class RegisterComponent implements OnInit {
             }),
             new ControlTextbox({
                 key: 'password',
-                label: 'Password',
-                placeholder: 'Password',
+                label: register_translation.Password,
+                placeholder: register_translation.Password,
                 value: '',
                 type: 'password',
                 required: true,

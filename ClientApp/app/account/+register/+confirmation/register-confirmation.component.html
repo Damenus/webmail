@@ -3,10 +3,12 @@
     </appc-page-heading>
 
     <p *ngIf="!emailConfirmed">
-        We have sent you a confirmation email, please visit your inbox and confirm by clicking the confirmation link.
+       {{ 'register_confirm_mail' | translate }}
     </p>
 
     <p *ngIf="emailConfirmed">
-        Thank you for confirming your email, please <a routerLink="../../login">Login</a> now.
+        {{ 'register_confirm_mail_thanks' | translate }}
+        <a routerLink="../../login">{{ 'Login' | translate}}</a>
+        {{ 'register_confirm_mail_thanks_suffix' | translate }}
     </p>
 </div>#

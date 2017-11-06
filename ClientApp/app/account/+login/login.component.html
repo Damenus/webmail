@@ -4,19 +4,19 @@
 
         <div class="card">
             <div class="card-header">
-                Login
+                {{ 'LOGIN_FORM.Login' | translate }}
             </div>
 
 
             <div class="card-block container">
                 <appc-error-summary [errors]="errors"></appc-error-summary>
-                <appc-dynamic-form (formsubmit)="login($event)" [controls]="controls" [btnText]="'Login'"></appc-dynamic-form>
+                <appc-dynamic-form (formsubmit)="login($event)" [controls]="controls" [btnText]="login_button_translation"></appc-dynamic-form>
             </div>
 
         </div>
 
         <p class="text-center font-weight-bold">
-            OR
+            {{ 'Or' | translate }}
         </p>
 
         <div class="text-center">

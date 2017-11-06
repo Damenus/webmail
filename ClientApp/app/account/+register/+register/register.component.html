@@ -2,11 +2,11 @@
 <div class="col-md-6 offset-md-3">
         <div class="card">
             <div class="card-header">
-                Register
+                {{'REGISTER_FORM.Register' | translate }}
             </div>
             <div class="card-block container">
                 <appc-error-summary [errors]="errors"></appc-error-summary>
-                <appc-dynamic-form (formsubmit)="register($event)" [controls]="controls" [btnText]="'Register'"></appc-dynamic-form>
+                <appc-dynamic-form (formsubmit)="register($event)" [controls]="controls" [btnText]="register_button_translation"></appc-dynamic-form>
 
             </div>
         </div>

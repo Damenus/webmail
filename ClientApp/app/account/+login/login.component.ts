@@ -6,6 +6,7 @@ import { ControlBase } from '../../shared/forms/control-base';
 import { ControlTextbox } from '../../shared/forms/control-textbox';
 import { UtilityService } from '../../core/services/utility.service';
 import { AccountService } from '../../core/services/account.service';
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
     selector: 'appc-login',
@@ -16,11 +17,13 @@ export class LoginComponent implements OnInit {
     public loginModel: LoginModel;
     public errors: string[] = [];
     public controls: any;
+    public login_button_translation: string;
 
     constructor(
         public accountService: AccountService,
         public router: Router,
-        public utilityService: UtilityService
+        public utilityService: UtilityService,
+        private translate: TranslateService
     ) { }
 
     public login(model: LoginModel): void {
@@ -35,11 +38,21 @@ export class LoginComponent implements OnInit {
     };
 
     public ngOnInit() {
+
+        //Get the translated strings
+        let login_translation: any;
+        this.translate.get('LOGIN_FORM').subscribe(result => {
+            login_translation = result;
+        });
+
+        this.login_button_translation = login_translation.Login;
+
+
         const controls: Array<ControlBase<any>> = [
             new ControlTextbox({
                 key: 'username',
-                label: 'Email',
-                placeholder: 'Email',
+                label: login_translation.Email,
+                placeholder: login_translation.Email,
                 value: '',
                 type: 'email',
                 required: true,
@@ -47,8 +60,8 @@ export class LoginComponent implements OnInit {
             }),
             new ControlTextbox({
                 key: 'password',
-                label: 'Password',
-                placeholder: 'Password',
+                label: login_translation.Password,
+                placeholder: login_translation.Password,
                 value: '',
                 type: 'password',
                 required: true,

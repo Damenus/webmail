@@ -7,5 +7,30 @@
   "Register": "Register",
   "Admin": "Admin",
   "Sort_by_name_asc": "Sort by name ascending",
-  "Sort_by_name_desc": "Sort by name descending"
+  "Sort_by_name_desc": "Sort by name descending",
+  "Do_admin_operation": "Do Admin Operation",
+  "Create_account": "Create account",
+  "Or": "OR",
+  "Log_in_with_Google": "Log in with Google",
+  "Log_in_with_Facebook": "Log in with Facebook",
+  "Log_in_with_Microsoft": "Log in with Microsoft",
+  "Log_in_with_Twitter": "Log in with Twitter",
+  "Profile": "Profile",
+  "register_confirm_mail": "We have sent you a confirmation email, please visit your inbox and confirm by clicking the confirmation link.",
+  "register_confirm_mail_thanks": "Thank you for confirming your email, please ",
+  "register_confirm_mail_thanks_suffix": " now.",
+  "REGISTER_FORM": {
+    "Username": "Username",
+    "Firstname": "Firstname",
+    "Lastname": "Lastname",
+    "Email": "Email",
+    "Password": "Password",
+    "Register": "Register"
+  },
+  "LOGIN_FORM": {
+    "Email": "Email",
+    "Password": "Password",
+    "Login": "Login"
+  }
+
 }

@@ -7,5 +7,30 @@
   "Register": "Zarejestruj się",
   "Admin": "Admin",
   "Sort_by_name_asc": "Sortuj po nazwie rosnąco",
-  "Sort_by_name_desc": "Sortuj po nazwie malejąco"
+  "Sort_by_name_desc": "Sortuj po nazwie malejąco",
+  "Do_admin_operation": "Wykonaj czynności administracyjne",
+  "Create_account": "Stwórz konto",
+  "Or": "LUB",
+  "Log_in_with_Google": "Zaloguj się przez Google",
+  "Log_in_with_Facebook": "Zaloguj się przez Facebook",
+  "Log_in_with_Microsoft": "Zaloguj się przez Microsoft",
+  "Log_in_with_Twitter": "Zaloguj się przez Twitter",
+  "Profile": "Profil",
+  "register_confirm_mail": "Wysłaliśmy Ci wiadomość e-mail z potwierdzeniem, odwiedź swoją skrzynkę odbiorczą i potwierdź, klikając link potwierdzający.",
+  "register_confirm_mail_thanks": "Dziękujemy za potwierdzenie e-maila, ",
+  "register_confirm_mail_thanks_suffix": " teraz.",
+  "REGISTER_FORM": {
+    "Username": "Nazwa użytkownika",
+    "Firstname": "Imię",
+    "Lastname": "Nazwisko",
+    "Email": "Email",
+    "Password": "Hasło",
+    "Register": "Rejestracja"
+  },
+  "LOGIN_FORM": {
+    "Email": "Email",
+    "Password": "Hasło",
+    "Login": "Logowanie"
+  }
+
 }
