@@ -9,7 +9,7 @@
         <!--Left nav-->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" routerLink="home">{{'APP_NAV_HOME' | translate}}</a>
+                <a class="nav-link" routerLinkActive="active" routerLink="home">{{'Home' | translate}}</a>
             </li>
             <!-- <li class="nav-item">
                 <a class="nav-link" routerLinkActive="active" routerLink="chat">Chat</a>
@@ -38,23 +38,23 @@
 
                 <li class="nav-item" *ngIf="!isLoggedIn">
                     <a class="nav-link" routerLinkActive="active" routerLink="register">
-                                <i class="fa fa-user"></i> {{'APP_NAV_REGISTER' | translate}}
+                                <i class="fa fa-user"></i> {{'Register' | translate}}
                             </a>
                 </li>
 
                 <li class="nav-item" *ngIf="!isLoggedIn">
                     <a class="nav-link" routerLinkActive="active" routerLink="login">
-                                <i class="fa fa-sign-in"></i>{{'APP_NAV_LOGIN' | translate}}
+                                <i class="fa fa-sign-in"></i>{{'Login' | translate}}
                             </a>
                 </li>
                 <li class="nav-item" *ngIf="isLoggedIn && user?.role?.indexOf('Admin') > -1">
                     <a class="nav-link" routerLinkActive="active" routerLink="admin">
-                                <i class="fa fa-gear"></i> {{'APP_NAV_ADMIN' | translate}}
+                                <i class="fa fa-gear"></i> {{'Admin' | translate}}
                             </a>
                 </li>
                 <li class="nav-item" *ngIf="isLoggedIn">
                     <a class="nav-link" (click)="accountService.logout()" routerLinkActive="active" href="javascript:void(null);">
-                                <i class="fa fa-sign-out"></i> {{'APP_NAV_LOGOUT' | translate}}
+                                <i class="fa fa-sign-out"></i> {{'Logout' | translate}}
                             </a>
                 </li>
             </ul>

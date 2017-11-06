@@ -2,8 +2,9 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { PageHeadingComponent } from './directives/page-heading.directive';
 import { DynamicFormComponent } from './forms/dynamic-form.component';
@@ -19,8 +20,13 @@ import { FooterComponent } from './layout/footer.component';
 import { UppercasePipe } from './pipes/uppercase.pipe';
 
 // Services
-import { ContentService } from './services/content.service';
-import { ApiTranslationLoader } from './services/api-translation-loader.service';
+//import { ContentService } from './services/content.service';
+//import { ApiTranslationLoader } from './services/api-translation-loader.service';
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}
+
 
 @NgModule({
   imports: [
@@ -35,7 +41,8 @@ import { ApiTranslationLoader } from './services/api-translation-loader.service'
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useClass: ApiTranslationLoader
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       }
     })
   ],
@@ -74,8 +81,7 @@ export class SharedModule {
     return {
       ngModule: SharedModule,
       providers: [
-        FormControlService,
-        ContentService
+        FormControlService
       ]
     };
   }
