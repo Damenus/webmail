@@ -60,7 +60,7 @@ namespace WebMail.Server
             {
                 _context.Languages.Add(new Language { Locale = "en", Description = "English" });
                 _context.SaveChanges();
-                _context.Languages.Add(new Language { Locale = "fr", Description = "Frensh" });
+                _context.Languages.Add(new Language { Locale = "pl", Description = "Polski" });
                 _context.SaveChanges();
             }
 
@@ -80,30 +80,41 @@ namespace WebMail.Server
                 _context.SaveChanges();
                 _context.Content.Add(new Content { Key = "APP_NAV_ADMIN" });
                 _context.SaveChanges();
+                _context.Content.Add(new Content { Key = "SORT_NAME_ASC" });
+                _context.SaveChanges();
+                _context.Content.Add(new Content { Key = "SORT_NAME_DESC" });
+                _context.SaveChanges();
+
             }
 
             if (!_context.ContentText.Any())
             {
-                _context.ContentText.Add(new ContentText { Text = "Site title", LanguageId = 1, ContentId = 1 });
-                _context.ContentText.Add(new ContentText { Text = "Titre du site", LanguageId = 2, ContentId = 1 });
+                _context.ContentText.Add(new ContentText { Text = "WebMail", LanguageId = 1, ContentId = 1 });
+                _context.ContentText.Add(new ContentText { Text = "WebMail", LanguageId = 2, ContentId = 1 });
 
                 _context.ContentText.Add(new ContentText { Text = "Home", LanguageId = 1, ContentId = 2 });
-                _context.ContentText.Add(new ContentText { Text = "Accueil", LanguageId = 2, ContentId = 2 });
+                _context.ContentText.Add(new ContentText { Text = "Home", LanguageId = 2, ContentId = 2 });
 
                 _context.ContentText.Add(new ContentText { Text = "Examples", LanguageId = 1, ContentId = 3 });
-                _context.ContentText.Add(new ContentText { Text = "Exemples", LanguageId = 2, ContentId = 3 });
+                _context.ContentText.Add(new ContentText { Text = "Przyk³ady", LanguageId = 2, ContentId = 3 });
 
                 _context.ContentText.Add(new ContentText { Text = "Login", LanguageId = 1, ContentId = 4 });
-                _context.ContentText.Add(new ContentText { Text = "S'identifier", LanguageId = 2, ContentId = 4 });
+                _context.ContentText.Add(new ContentText { Text = "Zaloguj siê", LanguageId = 2, ContentId = 4 });
 
                 _context.ContentText.Add(new ContentText { Text = "Logout", LanguageId = 1, ContentId = 5 });
-                _context.ContentText.Add(new ContentText { Text = "Connectez - Out", LanguageId = 2, ContentId = 5 });
+                _context.ContentText.Add(new ContentText { Text = "Wyloguj siê", LanguageId = 2, ContentId = 5 });
 
                 _context.ContentText.Add(new ContentText { Text = "Register", LanguageId = 1, ContentId = 6 });
-                _context.ContentText.Add(new ContentText { Text = "registre", LanguageId = 2, ContentId = 6 });
+                _context.ContentText.Add(new ContentText { Text = "Zarejestruj siê", LanguageId = 2, ContentId = 6 });
 
                 _context.ContentText.Add(new ContentText { Text = "Admin", LanguageId = 1, ContentId = 7 });
                 _context.ContentText.Add(new ContentText { Text = "Admin", LanguageId = 2, ContentId = 7 });
+
+                _context.ContentText.Add(new ContentText { Text = "Sort by name ascending", LanguageId = 1, ContentId = 8 });
+                _context.ContentText.Add(new ContentText { Text = "Sortuj po nazwie rosn¹co", LanguageId = 2, ContentId = 8 });
+
+                _context.ContentText.Add(new ContentText { Text = "Sort by name descending", LanguageId = 1, ContentId = 9 });
+                _context.ContentText.Add(new ContentText { Text = "Sortuj po nazwie malej¹co", LanguageId = 2, ContentId = 9 });
 
                 _context.SaveChanges();
             }

@@ -11,8 +11,8 @@ import { ProfileModel } from '../../core/models/profile-model';
 export class HeaderComponent implements OnInit {
     public isCollapsed = true;
     public languages = [
-        { locale: 'en', description: 'English' },
-        { locale: 'fr', description: 'French' }
+        { locale: 'pl', description: 'Polski' },
+        { locale: 'en', description: 'English' }
     ];
     public currentLanguage = this.languages[0];
 
