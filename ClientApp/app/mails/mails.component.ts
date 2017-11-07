@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MailService } from "../core/services/mail.service";
+import { MailsService } from "./mails.service";
 import { Mail } from "../core/models/mail";
 
 @Component({
@@ -10,10 +10,10 @@ export class MailsComponent implements OnInit {
     public mails: Array<Mail> = [];
     //public order: String= "mail.title";
 
-    constructor(private mailService: MailService) {}
+    constructor(private mailsService: MailsService) {}
 
     public ngOnInit() {
-        this.mailService.getMails().subscribe(mails => {
+        this.mailsService.getMails().subscribe(mails => {
             this.mails = mails;
         });
     }

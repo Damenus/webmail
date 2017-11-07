@@ -5,7 +5,6 @@ import { Title } from '@angular/platform-browser';
 import { AccountService } from './services/account.service';
 import { DataService } from './services/data.service';
 import { UtilityService } from './services/utility.service';
-import { MailService } from './services/mail.service';
 
 @NgModule({
     imports: [
@@ -25,8 +24,7 @@ export class CoreModule {
                 Title,
                 AccountService,
                 DataService,
-                UtilityService,
-                MailService
+                UtilityService
             ]
         };
     }
