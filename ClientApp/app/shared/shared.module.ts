@@ -21,6 +21,8 @@ import { UppercasePipe } from './pipes/uppercase.pipe';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { addImap } from '../modal/addImap.component';
+
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
 }
@@ -52,7 +54,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     FooterComponent,
     HeaderComponent,
     PageHeadingComponent,
-    UppercasePipe
+    UppercasePipe,
+    addImap
+  ],
+  entryComponents: [
+      addImap
   ],
   exports: [
     // Modules

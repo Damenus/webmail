@@ -3,11 +3,14 @@ import { TranslateService } from '@ngx-translate/core';
 import { AccountService } from '../../core/services/account.service';
 import { ProfileModel } from '../../core/models/profile-model';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { addImap } from '../../modal/addImap.component';
 
 @Component({
     selector: 'appc-header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss']
+    styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
     public isCollapsed = true;
@@ -19,7 +22,8 @@ export class HeaderComponent implements OnInit {
 
     constructor(
         public accountService: AccountService,
-        public translation: TranslateService
+        public translation: TranslateService,
+        private modalService: NgbModal
     ) { }
 
     public get isLoggedIn(): boolean {
@@ -39,5 +43,8 @@ export class HeaderComponent implements OnInit {
     public setLang(lang: any) {
         this.currentLanguage = lang;
         this.translation.use(lang.locale);
+    }
+    open(content: any) {
+        this.modalService.open(addImap);
     }
 }
