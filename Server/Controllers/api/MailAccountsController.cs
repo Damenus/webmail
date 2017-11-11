@@ -1,0 +1,144 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using WebMail.Server;
+using WebMail.Server.Entities;
+using Microsoft.AspNetCore.Authorization;
+using WebMail.Server.ViewModels.AccountViewModels;
+using System.Security.Claims;
+
+namespace WebMail.Server.Controllers.api
+{
+    [Produces("application/json")]
+    [Route("api/MailAccounts")]
+    [AllowAnonymous]
+    public class MailAccountsController : Controller
+    {
+        private readonly ApplicationDbContext _dbcontext;
+
+        public MailAccountsController(ApplicationDbContext context)
+        {
+            _dbcontext = context;
+        }
+
+        // GET: api/MailAccounts
+        [HttpGet]
+        public IEnumerable<MailAccount> GetMailAccounts()
+        {
+            return _dbcontext.MailAccounts;
+        }
+
+        /*// GET: api/MailAccounts/5
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetMailAccount([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var mailAccount = await _dbcontext.MailAccounts.SingleOrDefaultAsync(m => m.ID == id);
+
+            if (mailAccount == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(mailAccount);
+        }*/
+
+        /*// PUT: api/MailAccounts/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutMailAccount([FromRoute] int id, [FromBody] MailAccount mailAccount)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != mailAccount.ID)
+            {
+                return BadRequest();
+            }
+
+            _dbcontext.Entry(mailAccount).State = EntityState.Modified;
+
+            try
+            {
+                await _dbcontext.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!MailAccountExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }*/
+
+        // POST: api/MailAccounts
+        [HttpPost]
+        public async Task<IActionResult> PostMailAccount([FromBody] MailAccountViewModel model, string returnUrl = null)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            /////////////////!!!!!!!!!!!!!
+            int userId = Int32.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            /////////////////!!!!!!!!!!!!!
+            ApplicationUser user = _dbcontext.ApplicationUsers.Where(u => u.Id == userId).First();
+
+            var mailAccount = new MailAccount
+            {
+                MailAddress = model.MailAddress,
+                ImapServerAddress = model.ImapServerAddress,
+                Password = model.Password,
+                UserID = userId,
+                User = user
+            };
+
+            _dbcontext.MailAccounts.Add(mailAccount);
+            user.MailAccounts.Add(mailAccount);
+            _dbcontext.SaveChanges();
+
+            return CreatedAtAction("GetMailAccount", new { id = mailAccount.ID }, mailAccount);
+        }
+
+        /*// DELETE: api/MailAccounts/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteMailAccount([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var mailAccount = await _dbcontext.MailAccounts.SingleOrDefaultAsync(m => m.ID == id);
+            if (mailAccount == null)
+            {
+                return NotFound();
+            }
+
+            _dbcontext.MailAccounts.Remove(mailAccount);
+            await _dbcontext.SaveChangesAsync();
+
+            return Ok(mailAccount);
+        }
+
+        private bool MailAccountExists(int id)
+        {
+            return _dbcontext.MailAccounts.Any(e => e.ID == id);
+        }*/
+    }
+}
