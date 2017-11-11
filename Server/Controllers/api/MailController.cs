@@ -18,6 +18,7 @@ using MailKit.Search;
 using MailKit.Security;
 using MimeKit;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace WebMail.Server.Controllers.api
 {
@@ -46,10 +47,12 @@ namespace WebMail.Server.Controllers.api
         };
 
         private readonly ApplicationDbContext _dbContext;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public MailController(ApplicationDbContext dbContext)
+        public MailController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager)
         {
             _dbContext = dbContext;
+            _userManager = userManager;
 
             if (!_dbContext.Mails.Any())
             {
@@ -63,13 +66,18 @@ namespace WebMail.Server.Controllers.api
         public IEnumerable<Mail> GetMails()
         {
             //return _dbContext.Mails;
+            
+            int userId = Int32.Parse(_userManager.GetUserId(this.User));
 
+            MailAccount userMailAccount = _dbContext.MailAccounts.Where(a => a.UserID == userId).First();
             HashSet<Mail> mails = new HashSet<Mail>();
             try
             {
                 ImapClient imapClient = new ImapClient();
-                imapClient.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
-                imapClient.Authenticate("webmail2017.dev", "12341234xx");
+                //imapClient.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
+                imapClient.Connect(userMailAccount.ImapServerAddress, 993, SecureSocketOptions.SslOnConnect);
+                //imapClient.Authenticate("webmail2017.dev", "12341234xx");
+                imapClient.Authenticate(userMailAccount.MailAddress, userMailAccount.Password);
                 imapClient.Inbox.Open(FolderAccess.ReadOnly);
                 var uidsFromServer = imapClient.Inbox.Search(SearchQuery.All);
 
