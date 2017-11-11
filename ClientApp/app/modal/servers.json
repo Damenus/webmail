@@ -17,7 +17,7 @@
   },
   "wp.pl": {
     "imap": "imap.wp.pl",
-    "smtp": "smtp..wp.pl"
+    "smtp": "smtp.wp.pl"
   },
   "onet.pl": {
     "imap": "imap.poczta.onet.pl",
