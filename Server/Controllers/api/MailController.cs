@@ -28,25 +28,6 @@ namespace WebMail.Server.Controllers.api
     [Authorize]
     public class MailController : BaseController
     {
-        private static List<Mail> MAILS = new List<Mail>
-        {
-            new Mail
-            {
-                Title = "Hello, World!",
-                Body = "Lorem ipsum"
-            },
-            new Mail
-            {
-                Title = "Foo bar baz",
-                Body = "Lorem ipsum"
-            },
-            new Mail
-            {
-                Title = "ADkjahsdfka",
-                Body = "Lorem ipsum"
-            }
-        };
-
         private readonly ApplicationDbContext _dbContext;
         private readonly UserManager<ApplicationUser> _userManager;
 
@@ -54,13 +35,6 @@ namespace WebMail.Server.Controllers.api
         {
             _dbContext = dbContext;
             _userManager = userManager;
-
-            if (!_dbContext.Mails.Any())
-            {
-                _dbContext.Mails.AddRange(MAILS);
-            }
-
-            _dbContext.SaveChanges();
         }
 
         [HttpGet]
