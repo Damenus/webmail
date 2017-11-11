@@ -3,12 +3,10 @@ import { Params, ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 
-import { routerTransition } from './router.animations';
 import { ExternalLoginStatus } from './app.models';
 
 @Component({
   selector: 'appc-root',
-  animations: [routerTransition],
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
