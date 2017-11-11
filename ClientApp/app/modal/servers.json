@@ -22,6 +22,9 @@
   "onet.pl": {
     "imap": "imap.poczta.onet.pl",
     "smtp": "smtp.poczta.onet.pl"
+  },
+  "student.pg.gda.pl": {
+    "imap": "imap.student.pg.gda.pl",
+    "smtp": "smtp.student.pg.gda.pl"
   }
-
 }
