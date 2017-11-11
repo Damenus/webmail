@@ -6,12 +6,13 @@ import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
 import { MailsModule } from './mails/mails.module';
 import { NewMailModule } from './new-mail/new-mail.module';
+import { LoggedUserModule } from './logged-user/logged-user.module';
 
 import { routing } from './app.routes';
 import { AppService } from './app.service';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoggedUserComponent } from './logged-user/logged-user.component';
+
 
 @NgModule({
     imports: [
@@ -23,6 +24,7 @@ import { LoggedUserComponent } from './logged-user/logged-user.component';
         HomeModule,
         MailsModule,
         NewMailModule,
+        LoggedUserModule,
         NgbModule.forRoot()
     ],
     providers: [
@@ -32,6 +34,6 @@ import { LoggedUserComponent } from './logged-user/logged-user.component';
         SharedModule,
         // NgbModule
     ],
-    declarations: [LoggedUserComponent]
+    declarations: []
 })
 export class AppModuleShared { }
