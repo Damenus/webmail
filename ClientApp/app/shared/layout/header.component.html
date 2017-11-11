@@ -18,7 +18,7 @@
                 <a class="nav-link" routerLinkActive="active" routerLink="newmail">{{'Send_new_mail' | translate}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" routerLink="">{{'Add_new_mailbox' | translate}}</a>
+                <a class="nav-link" routerLinkActive="active" (click)="open(content)">{{'Add_new_mailbox' | translate}}</a>
             </li>
             <li class="nav-item dropdown">
                 <div ngbDropdown class="d-inline-block">
@@ -29,9 +29,6 @@
                         </button>
                     </div>
                 </div>
-            </li>
-            <li>
-                <a class="nav-link" (click)="open(content)" >dodaj imap</a>
             </li>
         </ul>
         

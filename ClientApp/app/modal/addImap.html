@@ -1,15 +1,33 @@
-﻿<ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <p>One fine body&hellip;</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-light" (click)="c('Close click')">Close</button>
-    </div>
-</ng-template>
-
+﻿<div class="modal-header">
+    <h4 class="modal-title">{{'addImap.Title' | translate}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form (ngSubmit)="onSubmit(addMountForm)" #addMountForm="ngForm">
+        <div class="form-group">
+            <label  class="col-sm-2 control-label text-nowrap"
+                   for="MailAdress">{{'addImap.Email' | translate}}</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" (ngModelChange)="onEmailChange()" ngModel id="MailAdress" name="MailAdress" placeholder="{{'addImap.Email' | translate}}" />
+            </div>
+            <label class="col-sm-2 control-label text-nowrap"
+                   for="Password">{{'addImap.Password' | translate}}</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" ngModel id="Password" name="Password" placeholder="{{'addImap.Password' | translate}}" />
+            </div>
+            <label class="col-sm-2 control-label text-nowrap"
+                   for="ImapServerAdress">{{'addImap.ImapServer' | translate}}</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ngModel id="ImapServerAdress" name="ImapServerAdress" placeholder="{{'addImap.ImapServer' | translate}}" />
+            </div>
+            <label class="col-sm-2 control-label text-nowrap"
+                   for="SmtpServerAdress">{{'addImap.SmtpServer' | translate}}</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ngModel id="SmtpServerAdress" name="SmtpServerAdress" placeholder="{{'addImap.SmtpServer' | translate}}" />
+            </div>
+        </div>
+        <button type="submit" class="btn btn-default">{{'addImap.Add' | translate}}</button>
+    </form>
+</div>

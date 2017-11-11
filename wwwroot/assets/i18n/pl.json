@@ -34,6 +34,13 @@
   },
   "Mails": "Wiadomości",
   "Send_new_mail": " Wyślij maila",
-  "Add_new_mailbox": "Dodaj nową skrzynkę mailową"
-
+  "Add_new_mailbox": "Dodaj nową skrzynkę mailową",
+  "addImap": {
+    "Title": "Dodaj swoje konta mailowe żeby móć korzystać z naszego serwisu",
+    "Email": "Email",
+    "Password": "Hasło",
+    "ImapServer": "Imap serwer",
+    "SmtpServer": "Smtp serwer",
+    "Add": "Dodaj!"
+  }
 }

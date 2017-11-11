@@ -34,6 +34,13 @@
   },
   "Mails": "Mails",
   "Send_new_mail": " Send new mail",
-  "Add_new_mailbox": "Add new mailbox"
-
+  "Add_new_mailbox": "Add new mailbox",
+  "addImap": {
+    "Title": "Add your mail account to start using our service!",
+    "Email": "Email",
+    "Password": "Password",
+    "ImapServer": "Imap server",
+    "SmtpServer": "Smtp server",
+    "Add": "Add!"
+  }
 }

@@ -1,27 +1,48 @@
-﻿import { Component } from '@angular/core';
-
+﻿import { Component, ViewEncapsulation } from '@angular/core';
+import { DataService } from '../core/services/data.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'addImap',
-    template: `
-    <div class="modal-header">
-      <h4 class="modal-title">{{'Sort_by_name_asc' | translate}}</h4>
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>Hello, {{name}}!</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-    </div>
-  `
-
+    templateUrl: './addImap.html',
+    encapsulation: ViewEncapsulation.None,
+    styles: [`
+    .dark-modal .modal-content {
+      background-color: #292b2c;
+      color: white;
+    }
+    .dark-modal .close {
+      color: white;   
+    }
+  `]
 })
 export class addImap {
 
-    constructor(public activeModal: NgbActiveModal) { }
+    constructor(public activeModal: NgbActiveModal, public dataService: DataService) { }
+    onSubmit(form: any) {
+        console.log("adding form values ");
+        console.log(form.value);
+        console.log(this.dataService.post('api/bla', form.value));
+    }
+    onEmailChange() {
+        var email: string;
+        var domain: string;
+        var servers = require('./servers.json');
 
+        email = (document.getElementById("MailAdress") as HTMLInputElement).value;
+
+        if (email.indexOf("@") !== -1) {
+            domain = email.substring(email.lastIndexOf("@") + 1);
+            for (var server in servers) {
+                if (server == domain) {
+                    (document.getElementById("SmtpServerAdress") as HTMLInputElement).value = servers[server].smtp;
+                    (document.getElementById("ImapServerAdress") as HTMLInputElement).value = servers[server].imap;
+                }
+            }
+        }
+        else {
+            domain = "";
+        }
+
+    }
 }
