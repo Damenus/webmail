@@ -16,7 +16,7 @@ namespace WebMail.Server.Controllers.api
 {
     [Produces("application/json")]
     [Route("api/MailAccounts")]
-    [AllowAnonymous]
+    [Authorize]
     public class MailAccountsController : Controller
     {
         private readonly ApplicationDbContext _dbcontext;
