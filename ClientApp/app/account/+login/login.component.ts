@@ -39,38 +39,37 @@ export class LoginComponent implements OnInit {
 
     public ngOnInit() {
 
-        //Get the translated strings
-        let login_translation: any;
-        this.translate.get('LOGIN_FORM').subscribe(result => {
-            login_translation = result;
+        let translation: Array<string>;
+        if (this.translate.getBrowserLang().match(/pl/)) {
+            translation = ['Email', 'Hasło', 'Zaloguj'];
+        } else {
+            translation = ['Email', 'Password', 'Login'];
+        }
 
-            this.login_button_translation = login_translation.Login;
+        this.login_button_translation = translation[2];
 
+        const controls: Array<ControlBase<any>> = [
+            new ControlTextbox({
+                key: 'username',
+                label: translation[0],
+                placeholder: translation[0],
+                value: '',
+                type: 'email',
+                required: true,
+                order: 1
+            }),
+            new ControlTextbox({
+                key: 'password',
+                label: translation[1],
+                placeholder: translation[1],
+                value: '',
+                type: 'password',
+                required: true,
+                order: 2
+            })
+        ];
 
-            const controls: Array<ControlBase<any>> = [
-                new ControlTextbox({
-                    key: 'username',
-                    label: login_translation.Email,
-                    placeholder: login_translation.Email,
-                    value: '',
-                    type: 'email',
-                    required: true,
-                    order: 1
-                }),
-                new ControlTextbox({
-                    key: 'password',
-                    label: login_translation.Password,
-                    placeholder: login_translation.Password,
-                    value: '',
-                    type: 'password',
-                    required: true,
-                    order: 2
-                })
-            ];
-
-            this.controls = controls;
-        });
-
+        this.controls = controls;      
         
     }
 }
