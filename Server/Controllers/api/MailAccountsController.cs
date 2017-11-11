@@ -32,7 +32,11 @@ namespace WebMail.Server.Controllers.api
         [HttpGet]
         public IEnumerable<MailAccount> GetMailAccounts()
         {
-            return _dbcontext.MailAccounts;
+            int userId = Int32.Parse(_userManager.GetUserId(this.User));
+
+            var mailAccounts = _dbcontext.MailAccounts.Select(m => m).Where(m => m.UserID == userId);
+
+            return mailAccounts;
         }
 
         /*// GET: api/MailAccounts/5
