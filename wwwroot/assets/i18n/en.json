@@ -31,6 +31,9 @@
     "Email": "Email",
     "Password": "Password",
     "Login": "Login"
-  }
+  },
+  "Mails": "Mails",
+  "Send_new_mail": " Send new mail",
+  "Add_new_mailbox": "Add new mailbox"
 
 }

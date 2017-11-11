@@ -31,6 +31,9 @@
     "Email": "Email",
     "Password": "Hasło",
     "Login": "Logowanie"
-  }
+  },
+  "Mails": "Wiadomości",
+  "Send_new_mail": " Wyślij maila",
+  "Add_new_mailbox": "Dodaj nową skrzynkę mailową"
 
 }
