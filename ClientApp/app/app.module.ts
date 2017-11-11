@@ -11,6 +11,7 @@ import { routing } from './app.routes';
 import { AppService } from './app.service';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoggedUserComponent } from './logged-user/logged-user.component';
 
 @NgModule({
     imports: [
@@ -30,6 +31,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     exports: [
         SharedModule,
         // NgbModule
-    ]
+    ],
+    declarations: [LoggedUserComponent]
 })
 export class AppModuleShared { }
