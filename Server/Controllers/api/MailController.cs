@@ -17,6 +17,7 @@ using MailKit.Net.Imap;
 using MailKit.Search;
 using MailKit.Security;
 using MimeKit;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebMail.Server.Controllers.api
 {
@@ -61,7 +62,37 @@ namespace WebMail.Server.Controllers.api
         [HttpGet]
         public IEnumerable<Mail> GetMails()
         {
-            return _dbContext.Mails;
+            //return _dbContext.Mails;
+
+            HashSet<Mail> mails = new HashSet<Mail>();
+            try
+            {
+                ImapClient imapClient = new ImapClient();
+                imapClient.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
+                imapClient.Authenticate("webmail2017.dev", "12341234xx");
+                imapClient.Inbox.Open(FolderAccess.ReadOnly);
+                var uidsFromServer = imapClient.Inbox.Search(SearchQuery.All);
+
+                foreach (UniqueId uid in uidsFromServer)
+                {
+                    MimeMessage message = imapClient.Inbox.GetMessage(uid);
+                    mails.Add(new Mail
+                    {
+                        UniqueID = uid.Id,
+                        Sender = message.From.ToString(),
+                        Title = message.Subject,
+                        Body = message.TextBody,
+                        Date = message.Date
+                    });
+                }
+                imapClient.Disconnect(true);
+            }
+            catch (Exception ex)
+            {
+                return _dbContext.Mails; // return "hello world" mails from DB
+            }
+
+            return mails;
         }
 
         [HttpPut("UpdateInboxMails")]
