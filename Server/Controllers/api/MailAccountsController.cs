@@ -116,16 +116,19 @@ namespace WebMail.Server.Controllers.api
             return CreatedAtAction("GetMailAccount", new { id = mailAccount.ID }, mailAccount);
         }
 
-        /*// DELETE: api/MailAccounts/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMailAccount([FromRoute] int id)
+        // DELETE: api/MailAccounts/<mail_address>
+        [HttpDelete("{mailAddress}")]
+        public async Task<IActionResult> DeleteMailAccount([FromRoute] string mailAddress)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var mailAccount = await _dbcontext.MailAccounts.SingleOrDefaultAsync(m => m.ID == id);
+            int userId = Int32.Parse(_userManager.GetUserId(this.User));
+            ApplicationUser user = _dbcontext.ApplicationUsers.Where(u => u.Id == userId).First();
+
+            var mailAccount = await _dbcontext.MailAccounts.SingleOrDefaultAsync(m => m.MailAddress == mailAddress && m.UserID == userId);
             if (mailAccount == null)
             {
                 return NotFound();
@@ -140,6 +143,6 @@ namespace WebMail.Server.Controllers.api
         private bool MailAccountExists(int id)
         {
             return _dbcontext.MailAccounts.Any(e => e.ID == id);
-        }*/
+        }
     }
 }
