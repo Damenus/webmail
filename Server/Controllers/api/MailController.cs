@@ -19,6 +19,7 @@ using MailKit.Security;
 using MimeKit;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using MailKit.Net.Smtp;
 
 namespace WebMail.Server.Controllers.api
 {
@@ -157,6 +158,42 @@ namespace WebMail.Server.Controllers.api
             }
 
             return Content("UpdateInboxMails completed successfully.");
+        }
+
+        [HttpPost("SendMail")]
+        public IActionResult SendMail(string receiver, string subject, string body)
+        {
+            int userId = Int32.Parse(_userManager.GetUserId(this.User));
+            MailAccount userMailAccount = _dbContext.MailAccounts.Where(a => a.UserID == userId).First();
+            MimeMessage message = new MimeMessage();
+            try
+            {
+                message.From.Add(new MailboxAddress("", userMailAccount.MailAddress));
+                message.To.Add(new MailboxAddress("", receiver));
+                message.Subject = subject;
+                message.Body = new TextPart("plain") { Text = body };
+            }
+            catch (Exception ex)
+            {
+                return Content("Error while trying to construct MimeMessage object: {0}", ex.Message);
+            }
+
+            try
+            {
+                using (SmtpClient smtpClient = new SmtpClient())
+                {
+                    smtpClient.Connect(userMailAccount.SmtpServerAddress, 587);
+                    smtpClient.Authenticate(userMailAccount.MailAddress, userMailAccount.Password);
+                    smtpClient.Send(message);
+                    smtpClient.Disconnect(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content("Error while trying to send mail via SMTP: {0}", ex.Message);
+            }
+
+            return Content("SendMail completed successfully.");
         }
     }
 }

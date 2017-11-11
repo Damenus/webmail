@@ -108,6 +108,7 @@ namespace WebMail.Server.Controllers.api
             {
                 MailAddress = model.MailAddress,
                 ImapServerAddress = model.ImapServerAddress,
+                SmtpServerAddress = model.SmtpServerAddress,
                 Password = model.Password,
                 UserID = userId,
                 User = user

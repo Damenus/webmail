@@ -17,6 +17,10 @@ namespace WebMail.Server.ViewModels.AccountViewModels
         public string ImapServerAddress { get; set; }
 
         [Required]
+        [Display(Name = "SmtpServerAddress")]
+        public string SmtpServerAddress { get; set; }
+
+        [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
