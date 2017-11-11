@@ -8,8 +8,12 @@ export class NewMailService {
 
   constructor(private dataService: DataService) { }
 
-  public sendMail(mail: Mail): Observable<any> {
-    return this.dataService.post('');
+  sendMail(mail: Mail): Observable<any> {
+    return this.dataService.post('api/mail/sendmail', {
+      receiver: mail.to,
+      subject: mail.title,
+      body: mail.body
+    });
   }
 
 }
