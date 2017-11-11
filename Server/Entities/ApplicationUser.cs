@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace WebMail.Server.Entities
 {
@@ -25,5 +27,12 @@ namespace WebMail.Server.Entities
             }
         }
 
+        // relationship with mail addresses
+        public virtual ICollection<MailAccount> MailAccounts { get; set; }
+
+        public ApplicationUser()
+        {
+            this.MailAccounts = new HashSet<MailAccount>();
+        }
     }
 }

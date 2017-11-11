@@ -12,6 +12,7 @@ namespace WebMail.Server
         public DbSet<Content> Content { get; set; }
         public DbSet<ContentText> ContentText { get; set; }
         public DbSet<Mail> Mails { get; set; }
+        public DbSet<MailAccount> MailAccounts { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
