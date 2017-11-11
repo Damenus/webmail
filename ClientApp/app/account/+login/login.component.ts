@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
         this.errors = [];
         this.accountService.login(model)
             .subscribe(() => {
-                this.utilityService.navigate('');
+                this.utilityService.navigate('loggeduser');
             },
             (errors: any) => {
                 this.errors.push(errors['error_description']);
@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
             })
         ];
 
-        this.controls = controls;      
-        
+        this.controls = controls;
+
     }
 }
