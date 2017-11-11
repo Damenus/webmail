@@ -8,7 +8,7 @@
   "Admin": "Admin",
   "Sort_by_name_asc": "Sort by name ascending",
   "Sort_by_name_desc": "Sort by name descending",
-  "Do_admin_operation": "Do Admin Operation",
+  "doAdminOperation": "Do Admin Operation",
   "Create_account": "Create account",
   "Or": "OR",
   "Log_in_with_Google": "Log in with Google",
