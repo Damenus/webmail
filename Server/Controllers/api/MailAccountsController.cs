@@ -10,6 +10,7 @@ using WebMail.Server.Entities;
 using Microsoft.AspNetCore.Authorization;
 using WebMail.Server.ViewModels.AccountViewModels;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebMail.Server.Controllers.api
 {
@@ -19,10 +20,12 @@ namespace WebMail.Server.Controllers.api
     public class MailAccountsController : Controller
     {
         private readonly ApplicationDbContext _dbcontext;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public MailAccountsController(ApplicationDbContext context)
+        public MailAccountsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _dbcontext = context;
+            _userManager = userManager;
         }
 
         // GET: api/MailAccounts
@@ -94,9 +97,7 @@ namespace WebMail.Server.Controllers.api
             {
                 return BadRequest(ModelState);
             }
-            /////////////////!!!!!!!!!!!!!
-            int userId = Int32.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            /////////////////!!!!!!!!!!!!!
+            int userId = Int32.Parse(_userManager.GetUserId(this.User));
             ApplicationUser user = _dbcontext.ApplicationUsers.Where(u => u.Id == userId).First();
 
             var mailAccount = new MailAccount
