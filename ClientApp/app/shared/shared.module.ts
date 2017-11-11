@@ -19,6 +19,7 @@ import { FooterComponent } from './layout/footer.component';
 
 import { UppercasePipe } from './pipes/uppercase.pipe';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -32,7 +33,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReactiveFormsModule,
     RouterModule,
     TranslateModule,
-    // NgbModule.forRoot(),
+     NgbModule.forRoot(),
     // No need to export as these modules don't expose any components/directive etc'
     HttpClientModule,
     TranslateModule.forRoot({

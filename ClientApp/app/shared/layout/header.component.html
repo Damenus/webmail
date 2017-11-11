@@ -11,13 +11,11 @@
             <li class="nav-item">
                 <a class="nav-link" routerLinkActive="active" routerLink="home">{{'Home' | translate}}</a>
             </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" routerLink="chat">Chat</a>
-            </li> -->
+            
             <li class="nav-item dropdown">
                 <div ngbDropdown class="d-inline-block">
                     <a class="nav-link" id="languages" ngbDropdownToggle>{{currentLanguage.description}}</a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="languages">
+                    <div ngbDropdownMenu aria-labelledby="languages">
                         <button *ngFor="let lang of languages" (click)="setLang(lang)" class="dropdown-item">
                             {{lang.description}}
                         </button>

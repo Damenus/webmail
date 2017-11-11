@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AccountService } from '../../core/services/account.service';
 import { ProfileModel } from '../../core/models/profile-model';
 
+
 @Component({
     selector: 'appc-header',
     templateUrl: './header.component.html',

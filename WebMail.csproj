@@ -42,10 +42,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\modal\addImap.component.ts" />
     <None Remove="ClientApp\boot.server.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\modal\addImap.component.ts" />
     <TypeScriptCompile Include="ClientApp\boot.server.ts" />
   </ItemGroup>
 

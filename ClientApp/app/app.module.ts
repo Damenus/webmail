@@ -9,6 +9,8 @@ import { MailsModule } from './mails/mails.module';
 import { routing } from './app.routes';
 import { AppService } from './app.service';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -18,6 +20,7 @@ import { AppService } from './app.service';
         SharedModule.forRoot(),
         HomeModule,
         MailsModule,
+        NgbModule.forRoot()
     ],
     providers: [
         AppService
