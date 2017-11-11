@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { NewMailRoutingModule } from './new-mail-routing.module';
 import { NewMailComponent } from './new-mail.component';
+import { NewMailService } from './new-mail.service'
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -13,6 +14,11 @@ import { FormsModule } from '@angular/forms';
     NewMailRoutingModule,
     FormsModule
   ],
-  declarations: [NewMailComponent]
+  declarations: [
+    NewMailComponent
+  ],
+  providers: [
+    NewMailService
+  ]
 })
 export class NewMailModule { }
