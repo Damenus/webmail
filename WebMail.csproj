@@ -42,8 +42,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\app\core\models\imap-model.ts" />
     <None Remove="ClientApp\app\modal\addImap.component.ts" />
+    <None Remove="ClientApp\app\modal\addImap.service.ts" />
     <None Remove="ClientApp\boot.server.ts" />
   </ItemGroup>
 
@@ -52,8 +52,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\app\core\models\imap-model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\core\models\mail-server-model.ts" />
     <TypeScriptCompile Include="ClientApp\app\modal\addImap.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\modal\addImap.service.ts" />
     <TypeScriptCompile Include="ClientApp\boot.server.ts" />
   </ItemGroup>
 

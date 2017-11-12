@@ -95,7 +95,7 @@ namespace WebMail.Server.Controllers.api
 
         // POST: api/MailAccounts
         [HttpPost]
-        public async Task<IActionResult> PostMailAccount([FromBody] MailAccountViewModel model, string returnUrl = null)
+        public async Task<IActionResult> PostMailAccount([FromBody] MailAccountViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -118,7 +118,7 @@ namespace WebMail.Server.Controllers.api
             user.MailAccounts.Add(mailAccount);
             _dbcontext.SaveChanges();
 
-            return CreatedAtAction("GetMailAccount", new { id = mailAccount.ID }, mailAccount);
+            return CreatedAtAction("PostMailAccount", new { id = mailAccount.ID }, mailAccount);
         }
 
         // DELETE: api/MailAccounts/<mail_address>

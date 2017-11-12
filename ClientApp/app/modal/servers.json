@@ -1,8 +1,4 @@
 ﻿{
-  "gmail.com": {
-    "imap": "imap.gmail.com",
-    "smtp": "smtp.gmail.com"
-  },
   "outlook.com": {
     "imap": "imap-mail.outlook.com",
     "smtp": "smtp-mail.outlook.com"

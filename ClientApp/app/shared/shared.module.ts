@@ -23,6 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { addImap } from '../modal/addImap.component';
 
+import { AddImapService } from "../modal/addImap.service";
+
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
 }
@@ -77,7 +79,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HeaderComponent,
     PageHeadingComponent,
     UppercasePipe
-  ]
+  ],
+  providers: [AddImapService]
 
 })
 export class SharedModule {
