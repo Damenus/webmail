@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
         this.currentLanguage = lang;
         this.translation.use(lang.locale);
     }
-    open(content: any) {
+    public open() {
         this.modalService.open(addImap);
     }
 }
