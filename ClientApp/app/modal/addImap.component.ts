@@ -32,7 +32,6 @@ export class addImap {
         this.addImapService.getServers().subscribe(servers => {
             this.myServers = servers;
         });
-        console.log("z serwera " + this.myServers);
     }
     onSubmit(form: any) {
         var tmp: MailServerModel = {
@@ -42,11 +41,16 @@ export class addImap {
             mailAddress: form.value.MailAddress,
 
         };
-        console.log(tmp);
         this.addImapService.setServers(tmp).subscribe(response => {
             console.log("Response: " + response);
         });
         
+    }
+    deleteServer(server: any) {
+        console.log(server);
+        this.addImapService.deleteServer(server.mailAddress).subscribe(response => {
+            console.log("Response: " + response);
+        });
     }
     onEmailChange() {
         var domain: string;

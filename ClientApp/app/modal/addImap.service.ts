@@ -13,7 +13,9 @@ export class AddImapService {
     }
 
     public setServers(toSend: MailServerModel): Observable<Array<MailServerModel>> {
-        console.log("do wyslania"+toSend);
         return this.dataService.post('/api/MailAccounts', toSend) as Observable<Array<MailServerModel>>;
+    }
+    public deleteServer(mailAddress: String): Observable<Array<MailServerModel>> {
+        return this.dataService.delete('/api/MailAccounts/' + mailAddress) as Observable<Array<MailServerModel>>;
     }
 }

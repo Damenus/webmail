@@ -8,6 +8,7 @@
     <ul>
         <li *ngFor="let server of myServers">
             <h6>{{server.mailAddress}}</h6>
+            <button class="delete" title="delete hero" (click)="deleteServer(server)">x</button>
         </li>
     </ul>
     <form (ngSubmit)="onSubmit(addMountForm)" #addMountForm="ngForm">

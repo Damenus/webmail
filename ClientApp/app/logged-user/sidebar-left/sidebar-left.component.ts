@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { addImap } from '../../modal/addImap.component';
+
 @Component({
   selector: 'appc-sidebar-left',
   templateUrl: './sidebar-left.component.html',
@@ -7,6 +11,9 @@ import { Component } from '@angular/core';
 })
 export class SidebarLeftComponent {
 
-  constructor() { }
+    constructor(private modalService: NgbModal) { }
+    public open() {
+        this.modalService.open(addImap);
+    }
 
 }
