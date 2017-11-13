@@ -3,19 +3,14 @@
         data-target="#navbarNav" aria-controls="navbarNav" (click)="toggleNav()" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" routerLink="home">WebMail</a>
+    <a class="navbar-brand">WebMail</a>
 
     <div class="collapse navbar-collapse" id="navbarNav" [class.show]="!isCollapsed">
         <!--Left nav-->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" routerLink="home">{{'Home' | translate}}</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" routerLink="mails">{{'Mails' | translate}}</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" routerLink="newmail">{{'Send_new_mail' | translate}}</a>
+                <a *ngIf="!isLoggedIn" class="nav-link" routerLinkActive="active" routerLink="home">{{'Home' | translate}}</a>
+                <a *ngIf="isLoggedIn" class="nav-link" routerLinkActive="active" routerLink="loggeduser">{{'Home' | translate}}</a>
             </li>
             <li class="nav-item dropdown">
                 <div ngbDropdown class="d-inline-block">

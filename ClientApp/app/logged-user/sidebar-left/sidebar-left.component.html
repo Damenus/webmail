@@ -1,16 +1,8 @@
-<nav class="col hidden-xs-down bg-faded sidebar">
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" routerLink="mails">{{ 'Mails' | translate }}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" routerLink="newmail">{{ 'Send_new_mail' | translate }}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" (click)="open()">{{'Add_new_mailbox' | translate}}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">template</a>
+<nav class="hidden-xs-down bg-faded sidebar">
+          <ul class="nav flex-column">
+            <li class="row mt-1" *ngFor="let server of myServers">
+                <span class="col col-md-10 ">{{server.mailAddress}}</span>
+                <button class="btn btn-danger col col-md-2" (click)="deleteServer(server)">x</button>
             </li>
           </ul>
 </nav>

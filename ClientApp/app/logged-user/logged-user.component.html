@@ -2,10 +2,10 @@
 
 <div class="container-fluid">
       <div class="row d-flex ">
-        <appc-sidebar-left></appc-sidebar-left>
-        <main class="col">
+        <appc-sidebar-left class="col col-md-2"></appc-sidebar-left>
+        <main class="col col-lg-8">
             <router-outlet #o="outlet"></router-outlet>
         </main>
-        <appc-sidebar-right></appc-sidebar-right>
+        <appc-sidebar-right class="col col-md-2"></appc-sidebar-right>
       </div>
 </div>

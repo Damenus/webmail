@@ -1,10 +1,13 @@
-<nav class="col hidden-xs-down bg-faded sidebar">
+<nav class="hidden-xs-down bg-faded sidebar">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link" routerLink="">template</a>
+              <a class="nav-link" routerLinkActive="active" routerLink="mails">{{ 'Mails' | translate }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="">template</a>
+              <a class="nav-link" routerLinkActive="active" routerLink="newmail">{{ 'Send_new_mail' | translate }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0);" (click)="open()">{{'Add_new_mailbox' | translate}}</a>
             </li>
           </ul>
 </nav>

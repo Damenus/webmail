@@ -14,6 +14,7 @@ import { addImap } from '../../modal/addImap.component';
 })
 export class HeaderComponent implements OnInit {
     public isCollapsed = true;
+    
     public languages = [
         { locale: 'pl', description: 'Polski' },
         { locale: 'en', description: 'English' }
@@ -47,4 +48,6 @@ export class HeaderComponent implements OnInit {
     public open() {
         this.modalService.open(addImap);
     }
+
+
 }

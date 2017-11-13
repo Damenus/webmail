@@ -32,7 +32,7 @@
   "Send_new_mail": " Wyślij maila",
   "Add_new_mailbox": "Dodaj nową skrzynkę mailową",
   "addImap": {
-    "Title": "Dodaj swoje konta mailowe żeby móć korzystać z naszego serwisu",
+    "Title": "Dodaj swoje konta mailowe żeby móc korzystać z naszego serwisu",
     "Email": "Email",
     "Password": "Hasło",
     "ImapServer": "Imap serwer",

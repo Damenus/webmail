@@ -4,13 +4,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<div class="modal-body">
-    <ul>
-        <li *ngFor="let server of myServers">
-            <h6>{{server.mailAddress}}</h6>
-            <button class="delete" title="delete hero" (click)="deleteServer(server)">x</button>
-        </li>
-    </ul>
+<div class="modal-body">  
     <form (ngSubmit)="onSubmit(addMountForm)" #addMountForm="ngForm">
         <div class="form-group">
             <label  class="col-sm-2 control-label text-nowrap"
