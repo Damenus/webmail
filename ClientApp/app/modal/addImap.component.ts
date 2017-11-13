@@ -23,6 +23,9 @@ export class addImap {
 
     public servers: any;
     public myServers: Array<MailServerModel>;
+    public ImapServerAddress: String;
+    public SmtpServerAddress: String;
+    public MailAddress: String;
 
     public ngOnInit() {
         this.servers = require('./servers.json');
@@ -46,20 +49,17 @@ export class addImap {
         
     }
     onEmailChange() {
-        var email: string;
         var domain: string;
         var founded: boolean;
 
-        email = (document.getElementById("MailAddress") as HTMLInputElement).value;
-
-        if (email.indexOf("@") !== -1) {
+        if (this.MailAddress.indexOf("@") !== -1) {
             founded = false;
-            domain = email.substring(email.lastIndexOf("@") + 1);
+            domain = this.MailAddress.substring(this.MailAddress.lastIndexOf("@") + 1);
             for (var server in this.servers) {
                 if (server == domain) {
-                    (document.getElementById("SmtpServerAddress") as HTMLInputElement).value = this.servers[server].smtp;
+                    this.SmtpServerAddress = this.servers[server].smtp;
                     (document.getElementById("SmtpServerAddress") as HTMLInputElement).disabled = true;
-                    (document.getElementById("ImapServerAddress") as HTMLInputElement).value = this.servers[server].imap;
+                    this.ImapServerAddress = this.servers[server].imap;
                     (document.getElementById("ImapServerAddress") as HTMLInputElement).disabled = true;
                     founded = true;
                 }

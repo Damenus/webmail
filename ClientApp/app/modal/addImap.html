@@ -5,12 +5,17 @@
     </button>
 </div>
 <div class="modal-body">
+    <ul>
+        <li *ngFor="let server of myServers">
+            <h6>{{server.mailAddress}}</h6>
+        </li>
+    </ul>
     <form (ngSubmit)="onSubmit(addMountForm)" #addMountForm="ngForm">
         <div class="form-group">
             <label  class="col-sm-2 control-label text-nowrap"
                    for="MailAddress">{{'addImap.Email' | translate}}</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" (ngModelChange)="onEmailChange()" ngModel id="MailAddress" name="MailAddress" placeholder="{{'addImap.Email' | translate}}" />
+                <input type="email" class="form-control" (keyup)="onEmailChange()" [(ngModel)]="MailAddress" id="MailAddress" name="MailAddress" placeholder="{{'addImap.Email' | translate}}" />
             </div>
             <label class="col-sm-2 control-label text-nowrap"
                    for="Password">{{'addImap.Password' | translate}}</label>
@@ -20,12 +25,12 @@
             <label class="col-sm-2 control-label text-nowrap"
                    for="ImapServerAddress">{{'addImap.ImapServer' | translate}}</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" ngModel id="ImapServerAddress" name="ImapServerAddress" placeholder="{{'addImap.ImapServer' | translate}}" />
+                <input type="text" class="form-control" [(ngModel)]="ImapServerAddress" id="ImapServerAddress" name="ImapServerAddress" placeholder="{{'addImap.ImapServer' | translate}}" >
             </div>
             <label class="col-sm-2 control-label text-nowrap"
                    for="SmtpServerAddress">{{'addImap.SmtpServer' | translate}}</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" ngModel id="SmtpServerAddress" name="SmtpServerAddress" placeholder="{{'addImap.SmtpServer' | translate}}" />
+                <input type="text" class="form-control"  [(ngModel)]="SmtpServerAddress" id="SmtpServerAddress" name="SmtpServerAddress" placeholder="{{'addImap.SmtpServer' | translate}}" />
             </div>
         </div>
         <button type="submit" class="btn btn-default">{{'addImap.Add' | translate}}</button>
