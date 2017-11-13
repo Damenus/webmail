@@ -38,5 +38,12 @@
     "ImapServer": "Imap server",
     "SmtpServer": "Smtp server",
     "Add": "Add!"
+  },
+  "NEW_MAIL": {
+    "To": "To:",
+    "Title": "Title:",
+    "Body": "Body:",
+    "Send": "Send"
   }
+
 }
