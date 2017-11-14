@@ -1,11 +1,12 @@
 ﻿import { Component, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MailServerModel } from "../core/models/mail-server-model";
-import { AddImapService } from "./addImap.service";
+import { mailAccountsService } from "./mailAccounts.service";
+
 
 @Component({
-    selector: 'addImap',
-    templateUrl: './addImap.html',
+    selector: 'mailAccounts',
+    templateUrl: './mailAccounts.component.html',
     encapsulation: ViewEncapsulation.None,
     styles: [`
     .dark-modal .modal-content {
@@ -17,21 +18,17 @@ import { AddImapService } from "./addImap.service";
     }
   `]
 })
-export class addImap {
+export class mailAccounts {
 
-    constructor(public activeModal: NgbActiveModal, private addImapService: AddImapService) { }
+    constructor(public activeModal: NgbActiveModal, private manageMailBoxService: mailAccountsService) { }
 
     public servers: any;
-    public myServers: Array<MailServerModel>;
     public ImapServerAddress: String;
     public SmtpServerAddress: String;
     public MailAddress: String;
 
     public ngOnInit() {
         this.servers = require('./servers.json');
-        this.addImapService.getServers().subscribe(servers => {
-            this.myServers = servers;
-        });
     }
     onSubmit(form: any) {
         var tmp: MailServerModel = {
@@ -41,17 +38,14 @@ export class addImap {
             mailAddress: form.value.MailAddress,
 
         };
-        this.addImapService.setServers(tmp).subscribe(response => {
-            console.log("Response: " + response);
+        this.manageMailBoxService.setServers(tmp).subscribe(response => {
+            console.log("Response: " + response);         
+            this.activeModal.close();
+            this.manageMailBoxService.getServers();
         });
         
     }
-    deleteServer(server: any) {
-        console.log(server);
-        this.addImapService.deleteServer(server.mailAddress).subscribe(response => {
-            console.log("Response: " + response);
-        });
-    }
+
     onEmailChange() {
         var domain: string;
         var founded: boolean;

@@ -42,19 +42,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\app\modal\addImap.component.ts" />
-    <None Remove="ClientApp\app\modal\addImap.service.ts" />
     <None Remove="ClientApp\boot.server.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="ClientApp\app\modal\servers.json" />
+    <Content Include="ClientApp\app\mailAccounts\servers.json" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\core\models\mail-server-model.ts" />
-    <TypeScriptCompile Include="ClientApp\app\modal\addImap.component.ts" />
-    <TypeScriptCompile Include="ClientApp\app\modal\addImap.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\mailAccounts\mailAccounts.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\mailAccounts\mailAccounts.service.ts" />
     <TypeScriptCompile Include="ClientApp\boot.server.ts" />
   </ItemGroup>
 

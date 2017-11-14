@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { MailServerModel } from "../../core/models/mail-server-model";
-import { AddImapService } from '../../modal/addImap.service';
+import { mailAccountsService } from "../../mailAccounts/mailAccounts.service";
 
 @Component({
   selector: 'appc-sidebar-left',
@@ -9,20 +8,19 @@ import { AddImapService } from '../../modal/addImap.service';
 })
 export class SidebarLeftComponent {
 
-    constructor (private addImapService: AddImapService) { }
+    constructor(private mailAccountsService: mailAccountsService) {
+    }
 
-    public myServers: Array<MailServerModel>;
 
     public ngOnInit() {
-        this.addImapService.getServers().subscribe(servers => {
-            this.myServers = servers;
-        });
+        this.mailAccountsService.getServers();
     }
 
     deleteServer(server: any) {
         console.log(server);
-        this.addImapService.deleteServer(server.mailAddress).subscribe(response => {
+        this.mailAccountsService.deleteServer(server.mailAddress).subscribe(response => {
             console.log("Response: " + response);
+            this.mailAccountsService.getServers();
         });
     }
 }

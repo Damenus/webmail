@@ -21,9 +21,10 @@ import { UppercasePipe } from './pipes/uppercase.pipe';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { addImap } from '../modal/addImap.component';
+import { mailAccounts } from '../mailAccounts/mailAccounts.component';
 
-import { AddImapService } from "../modal/addImap.service";
+import { mailAccountsService } from "../mailAccounts/mailAccounts.service";
+
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -57,10 +58,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     HeaderComponent,
     PageHeadingComponent,
     UppercasePipe,
-    addImap
+    mailAccounts
   ],
   entryComponents: [
-      addImap
+      mailAccounts
   ],
   exports: [
     // Modules
@@ -80,7 +81,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PageHeadingComponent,
     UppercasePipe
   ],
-  providers: [AddImapService]
+  providers: [mailAccountsService]
 
 })
 export class SharedModule {

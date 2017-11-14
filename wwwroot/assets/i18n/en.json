@@ -31,13 +31,15 @@
   "Mails": "Mails",
   "Send_new_mail": " Send new mail",
   "Add_new_mailbox": "Add new mailbox",
-  "addImap": {
+  "MailAccounts": {
     "Title": "Add your mail account to start using our service!",
     "Email": "Email",
     "Password": "Password",
     "ImapServer": "Imap server",
     "SmtpServer": "Smtp server",
-    "Add": "Add!"
+    "Add": "Add!",
+    "TitlleOfMailsList": "your mails accounts:",
+    "EmptyListOfMails": "your don't have any mails accounts. Please click \"Add new mailbox\" on right side to add account."
   },
   "NEW_MAIL": {
     "To": "To:",

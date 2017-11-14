@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { addImap } from '../../modal/addImap.component';
+import { mailAccounts } from '../../mailAccounts/mailAccounts.component';
 
 @Component({
   selector: 'appc-sidebar-right',
@@ -12,8 +12,9 @@ import { addImap } from '../../modal/addImap.component';
 export class SidebarRightComponent {
 
     constructor(private modalService: NgbModal) { }
+
     public open() {
-        this.modalService.open(addImap);
+        this.modalService.open(mailAccounts);
     }
 
 }
