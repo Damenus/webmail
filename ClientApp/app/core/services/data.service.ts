@@ -40,6 +40,7 @@ export class DataService {
     // data is present, it will be serialized as a JSON payload. Returns
     // a stream.
     public post<T>(url: string, data?: any, params?: any): Observable<T> {
+        console.log(data);
         if (!data) {
             data = params;
             params = {};

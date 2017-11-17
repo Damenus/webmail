@@ -17,6 +17,7 @@ export class NewMailComponent implements OnInit {
   }
 
   onSubmit() {
+      console.log(this.model);
     this.newMailService.sendMail(this.model);
   }
 
