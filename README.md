@@ -14,3 +14,11 @@ docker run -it -d -p 85:80 damenus/webmail:asp-net-core-spa
 ```
 
 [Link to docker repo](https://hub.docker.com/r/damenus/webmail/)
+
+If you want build docker image localy, go to directory and use this commands.
+
+```bash
+docker build -t myapp .
+docker run -it -d -p 85:80 myapp
+```
+The application will work on [localhost:85](http://localhost:85)
