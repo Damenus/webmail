@@ -37,61 +37,18 @@ namespace WebMail.Server.Controllers.api
             _userManager = userManager;
         }
 
-        // eg. api/mail
-        [HttpGet]
-        public IEnumerable<Mail> GetMailsFromFirstMailbox()
-        {
-            int userId = Int32.Parse(_userManager.GetUserId(this.User));
-
-            var query = _dbContext.MailAccounts.Where(a => a.UserID == userId);
-            if (!query.Any())   // if given email was not found
-                return null;
-
-            MailAccount userMailAccount = query.First();
-            HashSet<Mail> mails = new HashSet<Mail>();
-            try
-            {
-                ImapClient imapClient = new ImapClient();
-                //imapClient.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
-                imapClient.Connect(userMailAccount.ImapServerAddress, 993, SecureSocketOptions.SslOnConnect);
-                //imapClient.Authenticate("webmail2017.dev", "12341234xx");
-                imapClient.Authenticate(userMailAccount.MailAddress, userMailAccount.Password);
-                imapClient.Inbox.Open(FolderAccess.ReadOnly);
-                var uidsFromServer = imapClient.Inbox.Search(SearchQuery.All);
-
-                foreach (UniqueId uid in uidsFromServer)
-                {
-                    MimeMessage message = imapClient.Inbox.GetMessage(uid);
-                    mails.Add(new Mail
-                    {
-                        UniqueID = uid.Id,
-                        Sender = message.From.ToString(),
-                        Title = message.Subject,
-                        Body = message.TextBody,
-                        Date = message.Date
-                    });
-                }
-                imapClient.Disconnect(true);
-            }
-            catch (Exception ex)
-            {
-                return null;
-                //return _dbContext.Mails; // return "hello world" mails from DB
-            }
-
-            return mails;
-        }
-
         // eg. api/mail/email?address=webmailtest@onet.pl
-        [HttpGet("email")]
+        [HttpGet]
         public IEnumerable<Mail> GetMailsFromGivenMailbox([FromQuery] string address) 
         {
-            if (address == null)
-                return null;
-
             int userId = Int32.Parse(_userManager.GetUserId(this.User));
 
-            var query = _dbContext.MailAccounts.Where(a => a.UserID == userId && a.MailAddress == address);
+            IQueryable<MailAccount> query; 
+            if (address == null)    //address was not given as a parameter
+                query = _dbContext.MailAccounts.Where(a => a.UserID == userId);
+            else
+                query = _dbContext.MailAccounts.Where(a => a.UserID == userId && a.MailAddress == address);
+
             if (!query.Any())   // if given email was not found
                 return null;
 
