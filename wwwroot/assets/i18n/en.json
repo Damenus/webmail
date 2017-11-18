@@ -51,5 +51,6 @@
     "Search": "Search"
   },
   "Title": "WebMail",
-  "Confirm_delete_mailbox": "Are you sure want to delete this mailbox: {{mailbox}}"
+  "Confirm_delete_mailbox": "Are you sure want to delete this mailbox: {{mailbox}}",
+  "Empty": "Empty..."
 }

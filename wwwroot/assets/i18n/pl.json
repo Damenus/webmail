@@ -51,5 +51,6 @@
     "Search": "Szukaj"
   },
   "Title": "WebMail",
-  "Confirm_delete_mailbox": "Czy na pewno chcesz usunąć tę skrzynkę pocztową: {{mailbox}}"
+  "Confirm_delete_mailbox": "Czy na pewno chcesz usunąć tę skrzynkę pocztową: {{mailbox}}",
+  "Empty": "Pusto..."
 }

@@ -1,11 +1,14 @@
+$primary-color: #90A4AE;
+$danger-color: #ffc107;
+$danger-color-hover: #ffa000;
+$focus-color: rgba(128, 222, 234, 0.5);
+$link-color: rgba(0, 0, 0, 0.6);
+$link-color-hover: rgba(0, 0, 0, 0.8);
+
 .btn {
     padding: 2px 2px;
 }
 
-$primary-color: #90A4AE;
-$focus-color: rgba(128, 222, 234, 0.5);
-$link-color: rgba(0, 0, 0, 0.6);
-$link-color-hover: rgba(0, 0, 0, 0.8);
 .nav-link {
   color: $link-color;
 }
@@ -29,4 +32,16 @@ $link-color-hover: rgba(0, 0, 0, 0.8);
 
 .nav-link:hover {
   cursor: pointer;
+}
+
+.btn-danger {
+  color:black;
+  background-color: $danger-color;
+  border-color: $danger-color;
+}
+
+.btn-danger:hover {
+  color:black;
+  background-color: $danger-color-hover;
+  border-color: $danger-color-hover;
 }

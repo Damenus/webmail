@@ -24,7 +24,6 @@ export class MailsService {
     }
 
     public mailsFromMailbox(mailbox:String) {
-      console.log("service pass");
        this._listners.next(mailbox);
     }
 }

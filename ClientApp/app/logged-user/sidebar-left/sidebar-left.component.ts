@@ -22,7 +22,7 @@ export class SidebarLeftComponent {
 
     deleteServer(server: any) {
       this.translate.get('Confirm_delete_mailbox', {mailbox: server.mailAddress}).subscribe((res:string) => {
-        if(confirm(res)) {
+          if(confirm(res)) {
           this.mailAccountsService.deleteServer(server.mailAddress).subscribe(response => {
               console.log("Response: " + response);
               this.mailAccountsService.getServers();
@@ -32,7 +32,21 @@ export class SidebarLeftComponent {
     }
 
     public getMailsFromMailbox(mailbox:String) {
-      console.log("sidebar call");
       this.mailsService.mailsFromMailbox(mailbox);
+    }
+
+    public setActive(event:any) {
+      console.log(this);
+      // let clickedElement = event.target || event.srcElement;
+      //
+      // if(clickedElement.nodeName === "SPAN" ) {
+      //   let isCertainButtonAlreadyActive = clickedElement.parentElement.querySelector(".active");
+      //   // if a Button already has Class: .active
+      //   if( isCertainButtonAlreadyActive ) {
+      //     isCertainButtonAlreadyActive.classList.remove("active");
+      //   }
+      //
+      //   clickedElement.className += " active";
+      // }
     }
 }

@@ -19,8 +19,10 @@ export class MailsComponent implements OnInit {
     public maxMailsOnPage = 5;
     public page = 1;
     public searched: String;
-    public sortOrder: SortOrder = SortOrder.asc;
-    public currentSortOrder: SortOrder = this.sortOrder;
+    public sortOrderTitle: SortOrder = SortOrder.asc;
+    public currentSortOrderTitle: SortOrder = this.sortOrderTitle;
+    public sortOrderDate: SortOrder = SortOrder.desc;
+    public currentSortOrderDate: SortOrder = this.sortOrderDate;
     public loadingMails = false;
     constructor(private mailsService: MailsService) {
 
@@ -33,14 +35,19 @@ export class MailsComponent implements OnInit {
         this.loadingMails = true;
         this.mailsService.getMails().subscribe(mails => {
             this.loadingMails = false;
-            this.mailsFromServer = mails;
+            if (mails) {
+              this.mailsFromServer = mails;
+            } else {
+              this.mailsFromServer = [];
+            }
             this.searched = "";
             this.searchInMails();
-        });
+            this.changeSortOrderDate();
+        });            
     }
 
     public changeSortOrderTitle() {
-        let sort = this.currentSortOrder = this.sortOrder;
+        let sort = this.currentSortOrderTitle = this.sortOrderTitle;
 
         this.mailsAfterSearch.sort(function (mail1, mail2) {
             switch (sort) {
@@ -68,13 +75,51 @@ export class MailsComponent implements OnInit {
         this.page = 1;
         this.getPartOfMails();
 
-        if(this.sortOrder as SortOrder == SortOrder.asc as SortOrder) {
-          this.sortOrder = SortOrder.desc;
+        if(this.sortOrderTitle as SortOrder == SortOrder.asc as SortOrder) {
+          this.sortOrderTitle = SortOrder.desc;
         } else {
-          this.sortOrder = SortOrder.asc;
+          this.sortOrderTitle = SortOrder.asc;
         }
 
     }
+
+    public changeSortOrderDate() {
+        let sort = this.currentSortOrderDate = this.sortOrderDate;
+
+        this.mailsAfterSearch.sort(function (mail1, mail2) {
+            switch (sort) {
+                case SortOrder.asc: default: {
+                    if (mail1.date < mail2.date) {
+                        return -1;
+                    } else if (mail1.date > mail2.date) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                }
+                case SortOrder.desc: {
+                    if (mail1.date > mail2.date) {
+                        return -1;
+                    } else if (mail1.date < mail2.date) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                }
+            }
+
+        });
+        this.page = 1;
+        this.getPartOfMails();
+
+        if(this.sortOrderDate as SortOrder == SortOrder.asc as SortOrder) {
+          this.sortOrderDate = SortOrder.desc;
+        } else {
+          this.sortOrderDate = SortOrder.asc;
+        }
+
+    }
+
 
     public searchInMails() {
         if (this.searched == "") {
@@ -97,18 +142,14 @@ export class MailsComponent implements OnInit {
     }
 
     public getMailsFromMailbox(mailbox:String) {
-      console.log("mails call");
       this.loadingMails = true;
       this.mailsService.getMailsFromMailbox(mailbox).subscribe(mails => {
         this.loadingMails = false;
-          console.log(mails)
-            console.log(mailbox)
           if (mails) {
             this.mailsFromServer = mails;
           } else {
             this.mailsFromServer = [];
           }
-          console.log(mails)
           this.searched = "";
           this.searchInMails();
 
