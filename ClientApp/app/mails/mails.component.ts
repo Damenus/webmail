@@ -21,10 +21,18 @@ export class MailsComponent implements OnInit {
     public searched: String;
     public sortOrder: SortOrder = SortOrder.asc;
     public currentSortOrder: SortOrder = this.sortOrder;
-    constructor(private mailsService: MailsService) {}
+    public loadingMails = false;
+    constructor(private mailsService: MailsService) {
+
+      this.mailsService.listen().subscribe((m:any) => {
+        this.getMailsFromMailbox(m);
+      })
+    }
 
     public ngOnInit() {
+        this.loadingMails = true;
         this.mailsService.getMails().subscribe(mails => {
+            this.loadingMails = false;
             this.mailsFromServer = mails;
             this.searched = "";
             this.searchInMails();
@@ -86,5 +94,24 @@ export class MailsComponent implements OnInit {
 
     public getPartOfMails() {
         this.mailsOnPage = this.mailsAfterSearch.slice((this.page - 1) * this.maxMailsOnPage, this.page * this.maxMailsOnPage);
+    }
+
+    public getMailsFromMailbox(mailbox:String) {
+      console.log("mails call");
+      this.loadingMails = true;
+      this.mailsService.getMailsFromMailbox(mailbox).subscribe(mails => {
+        this.loadingMails = false;
+          console.log(mails)
+            console.log(mailbox)
+          if (mails) {
+            this.mailsFromServer = mails;
+          } else {
+            this.mailsFromServer = [];
+          }
+          console.log(mails)
+          this.searched = "";
+          this.searchInMails();
+
+      });
     }
 }

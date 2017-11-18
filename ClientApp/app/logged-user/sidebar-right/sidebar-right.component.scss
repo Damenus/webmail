@@ -19,6 +19,6 @@ $link-color-hover: rgba(0, 0, 0, 0.8);
   border-radius: 0.1rem;
 }
 
-.nav-link:focus, {
+.nav-link:focus {
   box-shadow: $focus-color;
 }

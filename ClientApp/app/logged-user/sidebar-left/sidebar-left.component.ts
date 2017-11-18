@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { mailAccountsService } from "../../mailAccounts/mailAccounts.service";
+import { MailsService } from "../../mails/mails.service";
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -10,7 +11,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class SidebarLeftComponent {
 
     constructor(private mailAccountsService: mailAccountsService,
-                private translate: TranslateService) {
+                private translate: TranslateService,
+                private mailsService: MailsService) {
     }
 
 
@@ -27,7 +29,10 @@ export class SidebarLeftComponent {
           });
         }
       });
+    }
 
-
+    public getMailsFromMailbox(mailbox:String) {
+      console.log("sidebar call");
+      this.mailsService.mailsFromMailbox(mailbox);
     }
 }
