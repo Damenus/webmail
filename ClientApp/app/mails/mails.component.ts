@@ -35,6 +35,7 @@ export class MailsComponent implements OnInit {
         this.loadingMails = true;
         this.mailsService.getMails().subscribe(mails => {
             this.loadingMails = false;
+            // sprawdzenie czy pobrane maile nie sa puste, zeby uniknac bledow w widoku
             if (mails) {
               this.mailsFromServer = mails;
             } else {
@@ -42,8 +43,9 @@ export class MailsComponent implements OnInit {
             }
             this.searched = "";
             this.searchInMails();
+            //sortowanie po dacie
             this.changeSortOrderDate();
-        });            
+        });
     }
 
     public changeSortOrderTitle() {
@@ -152,7 +154,8 @@ export class MailsComponent implements OnInit {
           }
           this.searched = "";
           this.searchInMails();
-
+          //sortowanie po dacie
+          this.changeSortOrderDate();
       });
     }
 }

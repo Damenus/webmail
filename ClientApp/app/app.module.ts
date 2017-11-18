@@ -13,6 +13,8 @@ import { AppService } from './app.service';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { MailViewModule } from './mail-view/mail-view.module';
+
 
 
 @NgModule({
@@ -25,6 +27,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         MailsModule,
         NewMailModule,
         LoggedUserModule,
+        MailViewModule,
         NgbModule.forRoot()
     ],
     providers: [

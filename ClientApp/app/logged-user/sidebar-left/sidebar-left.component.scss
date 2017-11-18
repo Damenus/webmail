@@ -1,6 +1,6 @@
 $primary-color: #90A4AE;
-$danger-color: #ffc107;
-$danger-color-hover: #ffa000;
+$danger-color: #80deea;
+$danger-color-hover: #00BCD4;
 $focus-color: rgba(128, 222, 234, 0.5);
 $link-color: rgba(0, 0, 0, 0.6);
 $link-color-hover: rgba(0, 0, 0, 0.8);
@@ -44,4 +44,5 @@ $link-color-hover: rgba(0, 0, 0, 0.8);
   color:black;
   background-color: $danger-color-hover;
   border-color: $danger-color-hover;
+  cursor: pointer;
 }
