@@ -1,17 +1,37 @@
 {
-  "Title": "WebMail",
-  "Home": "Home",
-  "Examples": "Przykłady",
-  "Login": "Zaloguj się",
-  "Logout": "Wyloguj się",
-  "Register": "Zarejestruj się",
+  "Add_new_mailbox": "Dodaj nową skrzynkę mailową",
   "Admin": "Admin",
-  "Sort_by_name_asc": "Sortuj po nazwie rosnąco",
-  "Sort_by_name_desc": "Sortuj po nazwie malejąco",
-  "doAdminOperation": "Wykonaj czynności administracyjne",
   "Create_account": "Stwórz konto",
+  "doAdminOperation": "Wykonaj czynności administracyjne",
+  "Examples": "Przykłady",
+  "Home": "Home",
+  "Login": "Zaloguj się",
+  "LOGIN_FORM": {
+    "Email": "Email",
+    "Password": "Hasło",
+    "Login": "Logowanie"
+  },
+  "Logout": "Wyloguj się",
+  "MailAccounts": {
+    "Title": "Dodaj swoje konta mailowe żeby móc korzystać z naszego serwisu",
+    "Email": "Email",
+    "Password": "Hasło",
+    "ImapServer": "Imap serwer",
+    "SmtpServer": "Smtp serwer",
+    "Add": "Dodaj!",
+    "TitlleOfMailsList": "twoje konta mailowe:",
+    "EmptyListOfMails": "Nie dodałeś żadnej skrzynki mailowej. Kliknij \"Dodaj nową skrzynkę mailową\" po prawej stronie!"
+  },
+  "Mails": "Wiadomości",
+  "NEW_MAIL": {
+    "To": "Do:",
+    "Title": "Tytuł:",
+    "Body": "Treść:",
+    "Send": "Wyślij"
+  },
   "Or": "LUB",
   "Profile": "Profil",
+  "Register": "Zarejestruj się",
   "register_confirm_mail": "Wysłaliśmy Ci wiadomość e-mail z potwierdzeniem, odwiedź swoją skrzynkę odbiorczą i potwierdź, klikając link potwierdzający.",
   "register_confirm_mail_thanks": "Dziękujemy za potwierdzenie e-maila, ",
   "register_confirm_mail_thanks_suffix": " teraz.",
@@ -23,28 +43,11 @@
     "Password": "Hasło",
     "Register": "Rejestracja"
   },
-  "LOGIN_FORM": {
-    "Email": "Email",
-    "Password": "Hasło",
-    "Login": "Logowanie"
-  },
-  "Mails": "Wiadomości",
   "Send_new_mail": " Wyślij maila",
-  "Add_new_mailbox": "Dodaj nową skrzynkę mailową",
-  "MailAccounts": {
-    "Title": "Dodaj swoje konta mailowe żeby móc korzystać z naszego serwisu",
-    "Email": "Email",
-    "Password": "Hasło",
-    "ImapServer": "Imap serwer",
-    "SmtpServer": "Smtp serwer",
-    "Add": "Dodaj!",
-    "TitlleOfMailsList": "twoje konta mailowe:",
-    "EmptyListOfMails": "Nie dodałeś żadnej skrzynki mailowej. Kliknij \"Dodaj nową skrzynkę mailową\" po prawej stronie!"
+  "SORT_SEARCH_MAILS": {
+    "Title": "Tytule",
+    "Label": "Sortuj maile po:",
+    "Search": "Szukaj"
   },
-  "NEW_MAIL": {
-    "To": "Do:",
-    "Title": "Tytuł:",
-    "Body": "Treść:",
-    "Send": "Wyślij"
-  }
+  "Title": "WebMail"
 }

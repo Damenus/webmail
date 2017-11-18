@@ -19,7 +19,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     imports: [
         BrowserModule,
         routing,
-        // NgbModule.forRoot(),
         CoreModule.forRoot(),
         SharedModule.forRoot(),
         HomeModule,

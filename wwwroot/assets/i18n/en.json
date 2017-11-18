@@ -1,36 +1,17 @@
 {
-  "Title": "WebMail",
-  "Home": "Home",
-  "Examples": "Examples",
-  "Login": "Login",
-  "Logout": "Logout",
-  "Register": "Register",
+  "Add_new_mailbox": "Add new mailbox",
   "Admin": "Admin",
-  "Sort_by_name_asc": "Sort by name ascending",
-  "Sort_by_name_desc": "Sort by name descending",
-  "doAdminOperation": "Do Admin Operation",
   "Create_account": "Create account",
-  "Or": "OR",
-  "Profile": "Profile",
-  "register_confirm_mail": "We have sent you a confirmation email, please visit your inbox and confirm by clicking the confirmation link.",
-  "register_confirm_mail_thanks": "Thank you for confirming your email, please ",
-  "register_confirm_mail_thanks_suffix": " now.",
-  "REGISTER_FORM": {
-    "Username": "Username",
-    "Firstname": "Firstname",
-    "Lastname": "Lastname",
-    "Email": "Email",
-    "Password": "Password",
-    "Register": "Register"
-  },
+  "doAdminOperation": "Do Admin Operation",
+  "Examples": "Examples",
+  "Home": "Home",
+  "Login": "Login",
   "LOGIN_FORM": {
     "Email": "Email",
     "Password": "Password",
     "Login": "Login"
   },
-  "Mails": "Mails",
-  "Send_new_mail": " Send new mail",
-  "Add_new_mailbox": "Add new mailbox",
+  "Logout": "Logout",
   "MailAccounts": {
     "Title": "Add your mail account to start using our service!",
     "Email": "Email",
@@ -41,11 +22,32 @@
     "TitlleOfMailsList": "your mails accounts:",
     "EmptyListOfMails": "your don't have any mails accounts. Please click \"Add new mailbox\" on right side to add account."
   },
+  "Mails": "Mails",
   "NEW_MAIL": {
     "To": "To:",
     "Title": "Title:",
     "Body": "Body:",
     "Send": "Send"
-  }
-
+  },
+  "Or": "OR",
+  "Profile": "Profile",
+  "Register": "Register",
+  "register_confirm_mail": "We have sent you a confirmation email, please visit your inbox and confirm by clicking the confirmation link.",
+  "register_confirm_mail_thanks": "Thank you for confirming your email, please ",
+  "register_confirm_mail_thanks_suffix": " now.",
+  "REGISTER_FORM": {
+    "Email": "Email",
+    "Firstname": "Firstname",
+    "Lastname": "Lastname",
+    "Password": "Password",
+    "Register": "Register",
+    "Username": "Username"
+  },
+  "Send_new_mail": " Send new mail",
+  "SORT_SEARCH_MAILS": {
+    "Title": "Title",
+    "Label": "Sort mails by:",
+    "Search": "Search"
+  },
+  "Title": "WebMail"
 }
