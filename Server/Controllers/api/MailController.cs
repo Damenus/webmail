@@ -39,7 +39,7 @@ namespace WebMail.Server.Controllers.api
 
         // eg. api/mail/email?address=webmailtest@onet.pl
         [HttpGet]
-        public IEnumerable<Mail> GetMailsFromGivenMailbox([FromQuery] string address) 
+        public IEnumerable<Mail> GetMailsFromGivenMailbox([FromQuery] string address, [FromQuery] uint? messageUID) 
         {
             int userId = Int32.Parse(_userManager.GetUserId(this.User));
 
@@ -62,10 +62,27 @@ namespace WebMail.Server.Controllers.api
                 //imapClient.Authenticate("webmail2017.dev", "12341234xx");
                 imapClient.Authenticate(userMailAccount.MailAddress, userMailAccount.Password);
                 imapClient.Inbox.Open(FolderAccess.ReadOnly);
-                var uidsFromServer = imapClient.Inbox.Search(SearchQuery.All);
 
-                foreach (UniqueId uid in uidsFromServer)
+                if (messageUID == null) //if uid parameter was not given - return all messages
                 {
+                    var uidsFromServer = imapClient.Inbox.Search(SearchQuery.All);
+
+                    foreach (UniqueId uid in uidsFromServer)
+                    {
+                        MimeMessage message = imapClient.Inbox.GetMessage(uid);
+                        mails.Add(new Mail
+                        {
+                            UniqueID = uid.Id,
+                            Sender = message.From.ToString(),
+                            Title = message.Subject,
+                            Body = message.TextBody,
+                            Date = message.Date
+                        });
+                    }
+                }
+                else        //if uid parameter was give - return precise message
+                {
+                    UniqueId uid = new UniqueId((uint)messageUID);
                     MimeMessage message = imapClient.Inbox.GetMessage(uid);
                     mails.Add(new Mail
                     {
@@ -76,6 +93,7 @@ namespace WebMail.Server.Controllers.api
                         Date = message.Date
                     });
                 }
+
                 imapClient.Disconnect(true);
             }
             catch (Exception ex)
