@@ -1,6 +1,9 @@
 $primary-color: #90A4AE;
 $primary-color-hover: #607D8B;
 $focus-color: rgba(128, 222, 234, 0.5);
+$link-color: rgba(0, 0, 0, 0.6);
+$link-color-disabled: rgba(0, 0, 0, 0.3);
+$link-color-hover: rgba(0, 0, 0, 0.8);
 
 .btn-primary {
   background-color: $primary-color;
@@ -18,8 +21,31 @@ $focus-color: rgba(128, 222, 234, 0.5);
   box-shadow: 0 0 0 3px $focus-color;
 }
 
-
-.page-item.active .page-link {
+/deep/ .page-item.active .page-link {
   background-color: $primary-color;
   border-color: $primary-color;
+}
+
+
+/deep/ .page-link {
+  color: $link-color;
+}
+
+/deep/ .page-item.disabled .page-link {
+  color: $link-color-disabled;
+}
+
+
+
+/deep/ .page-link:hover {
+  color: $link-color-hover;
+}
+
+.form-control {
+  width: auto;
+  display: inline-block;
+}
+
+.form-control:focus {
+  border-color: $focus-color;
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { mailAccountsService } from "../../mailAccounts/mailAccounts.service";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'appc-sidebar-left',
@@ -8,7 +9,8 @@ import { mailAccountsService } from "../../mailAccounts/mailAccounts.service";
 })
 export class SidebarLeftComponent {
 
-    constructor(private mailAccountsService: mailAccountsService) {
+    constructor(private mailAccountsService: mailAccountsService,
+                private translate: TranslateService) {
     }
 
 
@@ -17,10 +19,15 @@ export class SidebarLeftComponent {
     }
 
     deleteServer(server: any) {
-        console.log(server);
-        this.mailAccountsService.deleteServer(server.mailAddress).subscribe(response => {
-            console.log("Response: " + response);
-            this.mailAccountsService.getServers();
-        });
+      this.translate.get('Confirm_delete_mailbox', {mailbox: server.mailAddress}).subscribe((res:string) => {
+        if(confirm(res)) {
+          this.mailAccountsService.deleteServer(server.mailAddress).subscribe(response => {
+              console.log("Response: " + response);
+              this.mailAccountsService.getServers();
+          });
+        }
+      });
+
+
     }
 }

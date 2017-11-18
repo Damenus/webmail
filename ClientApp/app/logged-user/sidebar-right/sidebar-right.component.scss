@@ -1,12 +1,13 @@
 $primary-color: #90A4AE;
 $focus-color: rgba(128, 222, 234, 0.5);
-
+$link-color: rgba(0, 0, 0, 0.6);
+$link-color-hover: rgba(0, 0, 0, 0.8);
 .nav-link {
-  color: rgba(0, 0, 0, 0.6);
+  color: $link-color;
 }
 
 .nav-link:hover {
-  color: rgba(0, 0, 0, 0.8);
+  color: $link-color-hover;
 }
 
 .nav-link.active:hover {

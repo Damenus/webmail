@@ -1,12 +1,12 @@
-<div class="pb-3">
-  <span>{{'SORT_SEARCH_MAILS.Label' | translate}}</span>
+<div class="pb-3 align-middle">
+  <label>{{'SORT_SEARCH_MAILS.Label' | translate}}</label>
   <div class="btn-group">
       <button type="button" class="btn btn-primary" (click)="changeSortOrderTitle()">
         {{'SORT_SEARCH_MAILS.Title' | translate}} <i *ngIf="!currentSortOrder" class="fa fa-arrow-up"></i><i *ngIf="currentSortOrder" class="fa fa-arrow-down"></i>
       </button>
       <button type="button" class="btn btn-primary" (click)="changeSortOrderDate()" >{{'SORT_SEARCH_MAILS.Date' | translate}}</button>
   </div>
-  <input type="text" [(ngModel)]="searched" (keyup)="searchInMails()" placeholder="{{'SORT_SEARCH_MAILS.Search' | translate}}">
+  <input class="form-control" type="text" [(ngModel)]="searched" (keyup)="searchInMails()" placeholder="{{'SORT_SEARCH_MAILS.Search' | translate}}">
 </div>
 <div class="list-group">
     <div *ngFor="let mail of mailsOnPage">

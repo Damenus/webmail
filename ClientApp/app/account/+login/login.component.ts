@@ -6,7 +6,7 @@ import { ControlBase } from '../../shared/forms/control-base';
 import { ControlTextbox } from '../../shared/forms/control-textbox';
 import { UtilityService } from '../../core/services/utility.service';
 import { AccountService } from '../../core/services/account.service';
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'appc-login',
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
         this.errors = [];
         this.accountService.login(model)
             .subscribe(() => {
-                this.utilityService.navigate('loggeduser');
+                this.utilityService.navigate('loggeduser/mails');
             },
             (errors: any) => {
                 this.errors.push(errors['error_description']);

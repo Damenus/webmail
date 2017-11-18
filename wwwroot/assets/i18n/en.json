@@ -50,5 +50,6 @@
     "Label": "Sort by:",
     "Search": "Search"
   },
-  "Title": "WebMail"
+  "Title": "WebMail",
+  "Confirm_delete_mailbox": "Are you sure want to delete this mailbox: {{mailbox}}"
 }
