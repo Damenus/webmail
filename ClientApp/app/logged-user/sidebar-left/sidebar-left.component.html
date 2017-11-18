@@ -1,10 +1,12 @@
-<nav class="hidden-xs-down bg-faded sidebar">
-          <h6>{{ 'MailAccounts.TitlleOfMailsList' | translate }}</h6>
-          <p  *ngIf="mailAccountsService.servers===undefinedadd || mailAccountsService.servers.length <= 0 ">{{ 'MailAccounts.EmptyListOfMails' | translate }}</p>
-          <ul class="nav flex-column">
-            <li class="row mt-1" *ngFor="let server of mailAccountsService.servers">
-                <span class="col col-md-10 ">{{server.mailAddress}}</span>
-                <button class="btn btn-danger col col-md-2" (click)="deleteServer(server)">x</button>
-            </li>
-          </ul>
+<nav class="hidden-xs-down bg-faded sidebar container-fluid">
+        <h5><i class="fa fa-address-card-o"></i> {{ 'MailAccounts.TitlleOfMailsList' | translate }}</h5>
+        <p  *ngIf="mailAccountsService.servers===undefinedadd || mailAccountsService.servers.length <= 0 ">{{ 'MailAccounts.EmptyListOfMails' | translate }}</p>
+        <ul class="nav flex-column">
+          <li class="row mt-1" *ngFor="let server of mailAccountsService.servers">
+              <span class="col col-md-11 text-truncate">{{server.mailAddress}}</span>
+              <div class="col col-md-1">
+                <button class="btn btn-danger" (click)="deleteServer(server)"><i class="fa fa-trash-o"></i></button>
+              </div>
+          </li>
+        </ul>
 </nav>

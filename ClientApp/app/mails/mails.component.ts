@@ -2,8 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { MailsService } from "./mails.service";
 import { Mail } from "../core/models/mail";
 
+export enum SortOrder {
+  asc,
+  desc
+}
+
 @Component({
   selector: 'appc-mails-component',
+  styleUrls: ['./mails.component.scss'],
   templateUrl: './mails.component.html'
 })
 export class MailsComponent implements OnInit {
@@ -13,7 +19,8 @@ export class MailsComponent implements OnInit {
     public maxMailsOnPage = 5;
     public page = 1;
     public searched: String;
-
+    public sortOrder: SortOrder = SortOrder.asc;
+    public currentSortOrder: SortOrder = this.sortOrder;
     constructor(private mailsService: MailsService) {}
 
     public ngOnInit() {
@@ -24,10 +31,12 @@ export class MailsComponent implements OnInit {
         });
     }
 
-    public sortBy(order: String) {
+    public changeSortOrderTitle() {
+        let sort = this.currentSortOrder = this.sortOrder;
+
         this.mailsAfterSearch.sort(function (mail1, mail2) {
-            switch (order) {
-                case "Title_Down": default: {
+            switch (sort) {
+                case SortOrder.asc: default: {
                     if (mail1.title.toLowerCase() < mail2.title.toLowerCase()) {
                         return -1;
                     } else if (mail1.title.toLowerCase() > mail2.title.toLowerCase()) {
@@ -36,7 +45,7 @@ export class MailsComponent implements OnInit {
                         return 0;
                     }
                 }
-                case "Title_Up": {
+                case SortOrder.desc: {
                     if (mail1.title.toLowerCase() > mail2.title.toLowerCase()) {
                         return -1;
                     } else if (mail1.title.toLowerCase() < mail2.title.toLowerCase()) {
@@ -45,11 +54,18 @@ export class MailsComponent implements OnInit {
                         return 0;
                     }
                 }
-            } 
-            
+            }
+
         });
         this.page = 1;
         this.getPartOfMails();
+
+        if(this.sortOrder as SortOrder == SortOrder.asc as SortOrder) {
+          this.sortOrder = SortOrder.desc;
+        } else {
+          this.sortOrder = SortOrder.asc;
+        }
+
     }
 
     public searchInMails() {

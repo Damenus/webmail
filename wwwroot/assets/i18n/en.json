@@ -19,7 +19,7 @@
     "ImapServer": "Imap server",
     "SmtpServer": "Smtp server",
     "Add": "Add!",
-    "TitlleOfMailsList": "your mails accounts:",
+    "TitlleOfMailsList": "Accounts:",
     "EmptyListOfMails": "your don't have any mails accounts. Please click \"Add new mailbox\" on right side to add account."
   },
   "Mails": "Mails",
@@ -46,8 +46,10 @@
   "Send_new_mail": " Send new mail",
   "SORT_SEARCH_MAILS": {
     "Title": "Title",
-    "Label": "Sort mails by:",
+    "Date": "Date",
+    "Label": "Sort by:",
     "Search": "Search"
   },
-  "Title": "WebMail"
+  "Title": "WebMail",
+  "Confirm_delete_mailbox": "Are you sure want to delete this mailbox: {{mailbox}}"
 }

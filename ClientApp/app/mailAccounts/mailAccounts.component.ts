@@ -7,16 +7,8 @@ import { mailAccountsService } from "./mailAccounts.service";
 @Component({
     selector: 'mailAccounts',
     templateUrl: './mailAccounts.component.html',
-    encapsulation: ViewEncapsulation.None,
-    styles: [`
-    .dark-modal .modal-content {
-      background-color: #292b2c;
-      color: white;
-    }
-    .dark-modal .close {
-      color: white;   
-    }
-  `]
+    styleUrls: ['./mailAccounts.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class mailAccounts {
 
@@ -39,11 +31,11 @@ export class mailAccounts {
 
         };
         this.manageMailBoxService.setServers(tmp).subscribe(response => {
-            console.log("Response: " + response);         
+            console.log("Response: " + response);
             this.activeModal.close();
             this.manageMailBoxService.getServers();
         });
-        
+
     }
 
     onEmailChange() {
