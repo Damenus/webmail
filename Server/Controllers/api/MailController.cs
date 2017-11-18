@@ -37,14 +37,17 @@ namespace WebMail.Server.Controllers.api
             _userManager = userManager;
         }
 
+        // eg. api/mail
         [HttpGet]
-        public IEnumerable<Mail> GetMails()
+        public IEnumerable<Mail> GetMailsFromFirstMailbox()
         {
-            //return _dbContext.Mails;
-            
             int userId = Int32.Parse(_userManager.GetUserId(this.User));
 
-            MailAccount userMailAccount = _dbContext.MailAccounts.Where(a => a.UserID == userId).First();
+            var query = _dbContext.MailAccounts.Where(a => a.UserID == userId);
+            if (!query.Any())   // if given email was not found
+                return null;
+
+            MailAccount userMailAccount = query.First();
             HashSet<Mail> mails = new HashSet<Mail>();
             try
             {
@@ -72,13 +75,62 @@ namespace WebMail.Server.Controllers.api
             }
             catch (Exception ex)
             {
-                return _dbContext.Mails; // return "hello world" mails from DB
+                return null;
+                //return _dbContext.Mails; // return "hello world" mails from DB
             }
 
             return mails;
         }
 
-        [HttpPut("UpdateInboxMails")]
+        // eg. api/mail/email?address=webmailtest@onet.pl
+        [HttpGet("email")]
+        public IEnumerable<Mail> GetMailsFromGivenMailbox([FromQuery] string address) 
+        {
+            if (address == null)
+                return null;
+
+            int userId = Int32.Parse(_userManager.GetUserId(this.User));
+
+            var query = _dbContext.MailAccounts.Where(a => a.UserID == userId && a.MailAddress == address);
+            if (!query.Any())   // if given email was not found
+                return null;
+
+            MailAccount userMailAccount = query.First();
+            HashSet<Mail> mails = new HashSet<Mail>();
+            try
+            {
+                ImapClient imapClient = new ImapClient();
+                //imapClient.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
+                imapClient.Connect(userMailAccount.ImapServerAddress, 993, SecureSocketOptions.SslOnConnect);
+                //imapClient.Authenticate("webmail2017.dev", "12341234xx");
+                imapClient.Authenticate(userMailAccount.MailAddress, userMailAccount.Password);
+                imapClient.Inbox.Open(FolderAccess.ReadOnly);
+                var uidsFromServer = imapClient.Inbox.Search(SearchQuery.All);
+
+                foreach (UniqueId uid in uidsFromServer)
+                {
+                    MimeMessage message = imapClient.Inbox.GetMessage(uid);
+                    mails.Add(new Mail
+                    {
+                        UniqueID = uid.Id,
+                        Sender = message.From.ToString(),
+                        Title = message.Subject,
+                        Body = message.TextBody,
+                        Date = message.Date
+                    });
+                }
+                imapClient.Disconnect(true);
+            }
+            catch (Exception ex)
+            {
+                return null;
+                //return _dbContext.Mails; // return "hello world" mails from DB
+            }
+
+            return mails;
+        }
+
+       /* [HttpPut("UpdateInboxMails")]
         public IActionResult UpdateInboxMails()
         {
             ImapClient imapClient = new ImapClient();
@@ -132,7 +184,7 @@ namespace WebMail.Server.Controllers.api
             }
 
             return Content("UpdateInboxMails completed successfully.");
-        }
+        }*/
 
         [HttpPost("SendMail")]
         public IActionResult SendMail(string receiver, string subject, string body)
