@@ -1,0 +1,23 @@
+$primary-color: #90A4AE;
+$focus-color: rgba(128, 222, 234, 0.5);
+
+.nav-link {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.nav-link:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.nav-link.active:hover {
+  color: white;
+}
+
+.nav-link.active {
+  background-color: $primary-color;
+  border-radius: 0.1rem;
+}
+
+.nav-link:focus, {
+  box-shadow: $focus-color;
+}

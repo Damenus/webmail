@@ -1,1 +1,25 @@
+$primary-color: #90A4AE;
+$primary-color-hover: #607D8B;
+$focus-color: rgba(128, 222, 234, 0.5);
 
+.btn-primary {
+  background-color: $primary-color;
+  border-color: $primary-color;
+  border-radius: 0.1rem;
+  padding: 0.2rem 0.5rem;
+}
+
+.btn-primary:hover {
+  background-color: $primary-color-hover;
+  border-color: $primary-color-hover;
+}
+
+.btn-primary:focus, {
+  box-shadow: 0 0 0 3px $focus-color;
+}
+
+
+.page-item.active .page-link {
+  background-color: $primary-color;
+  border-color: $primary-color;
+}

@@ -1,12 +1,16 @@
-<h6>{{'SORT_SEARCH_MAILS.Label' | translate}}</h6>
-<div class="btn-group">
-    <button type="button" class="btn btn-primary" (click)="sortBy('Title_Down')" >{{'SORT_SEARCH_MAILS.Title' | translate}} a-z </button>
-    <button type="button" class="btn btn-primary" (click)="sortBy('Title_Up')">{{'SORT_SEARCH_MAILS.Title' | translate}} z-a </button>
+<div class="pb-3">
+  <span>{{'SORT_SEARCH_MAILS.Label' | translate}}</span>
+  <div class="btn-group">
+      <button type="button" class="btn btn-primary" (click)="changeSortOrderTitle()">
+        {{'SORT_SEARCH_MAILS.Title' | translate}} <i *ngIf="!currentSortOrder" class="fa fa-arrow-up"></i><i *ngIf="currentSortOrder" class="fa fa-arrow-down"></i>
+      </button>
+      <button type="button" class="btn btn-primary" (click)="changeSortOrderDate()" >{{'SORT_SEARCH_MAILS.Date' | translate}}</button>
+  </div>
+  <input type="text" [(ngModel)]="searched" (keyup)="searchInMails()" placeholder="{{'SORT_SEARCH_MAILS.Search' | translate}}">
 </div>
-<input type="text" [(ngModel)]="searched" (keyup)="searchInMails()" placeholder="{{'SORT_SEARCH_MAILS.Search' | translate}}">
 <div class="list-group">
     <div *ngFor="let mail of mailsOnPage">
-        <a href="/loggeduser/mails/{{mail.title}}" class="list-group-item list-group-item-action">{{mail.title}}</a> 
+        <a href="/loggeduser/mails/{{mail.title}}" class="list-group-item list-group-item-action">{{mail.title}}</a>
     </div>
 </div>
 <ngb-pagination [pageSize]="maxMailsOnPage" [collectionSize]="mailsAfterSearch.length" [(page)]="page" (pageChange)="getPartOfMails()"></ngb-pagination>

@@ -4,7 +4,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<div class="modal-body">  
+<div class="modal-body">
     <form (ngSubmit)="onSubmit(addMountForm)" #addMountForm="ngForm">
         <div class="form-group">
             <label  class="col-sm-2 control-label text-nowrap"
@@ -28,6 +28,6 @@
                 <input type="text" class="form-control"  [(ngModel)]="SmtpServerAddress" id="SmtpServerAddress" name="SmtpServerAddress" placeholder="{{'MailAccounts.SmtpServer' | translate}}" />
             </div>
         </div>
-        <button type="submit" class="btn btn-default">{{'MailAccounts.Add' | translate}}</button>
+        <button type="submit" class="btn btn-primary">{{'MailAccounts.Add' | translate}}</button>
     </form>
 </div>

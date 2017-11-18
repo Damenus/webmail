@@ -11,3 +11,12 @@ $primary-color-hover: #607D8B;
   background-color: $primary-color-hover;
   border-color: $primary-color-hover;
 }
+
+.dark-modal .modal-content {
+  background-color: #292b2c;
+  color: white;
+}
+
+.dark-modal .close {
+  color: white;
+}
