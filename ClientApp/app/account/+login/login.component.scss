@@ -1,35 +1,57 @@
 
-            .separator {
-                font-size: 15px;
-                font-weight: 600;
-                margin: 24px auto 16px auto;
-                position: relative;
-                overflow: hidden;
-                width: 100px;
-                color: rgba(0, 0, 0, 0.54);
+$primary-color: #90A4AE;
+$primary-color-hover: #607D8B;
+$focus-color: rgba(128, 222, 234, 0.5);
+$link-color: rgba(0, 0, 0, 0.6);
+$link-color-disabled: rgba(0, 0, 0, 0.3);
+$link-color-hover: rgba(0, 0, 0, 0.8);
 
-                .text {
-                    display: inline-block;
-                    vertical-align: baseline;
-                    position: relative;
-                    padding: 0 8px;
-                    z-index: 9999;
+.separator {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 24px auto 16px;
+  position: relative;
+  overflow: hidden;
+  width: 100px;
+  color: rgba(0, 0, 0, 0.54);
 
-                    &:before, &:after {
-                        content: '';
-                        display: block;
-                        width: 30px;
-                        position: absolute;
-                        top: 10px;
-                        border-top: 1px solid rgba(0, 0, 0, 0.12);
-                    }
+  .text {
+    display: inline-block;
+    vertical-align: baseline;
+    position: relative;
+    padding: 0 8px;
+    z-index: 9999;
 
-                    &:before {
-                        right: 100%;
-                    }
+    &:after,
+    &:before {
+      content: '';
+      display: block;
+      width: 30px;
+      position: absolute;
+      top: 10px;
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+    }
 
-                    &:after {
-                        left: 100%;
-                    }
-                }
-            }
+    &:before {
+      right: 100%;
+    }
+
+    &:after {
+      left: 100%;
+    }
+  }
+}
+
+.btn-primary {
+  background-color: $primary-color;
+  border-color: $primary-color;  
+}
+
+.btn-primary:hover {
+  background-color: $primary-color-hover;
+  border-color: $primary-color-hover;
+}
+
+.btn-primary:focus, {
+  box-shadow: 0 0 0 3px $focus-color;
+}

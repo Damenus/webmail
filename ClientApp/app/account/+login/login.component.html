@@ -8,17 +8,35 @@
             </div>
 
 
-            <div class="card-block container">
+            <!-- <div class="card-block container">
                 <appc-error-summary [errors]="errors"></appc-error-summary>
                 <appc-dynamic-form (formsubmit)="login($event)" [controls]="controls" [btnText]="login_button_translation"></appc-dynamic-form>
+            </div> -->
+
+            <div class="card-block container">
+              <appc-error-summary [errors]="errors"></appc-error-summary>
+              <form class="form-horizontal" (ngSubmit)="login()">
+                <div class="form-group">
+                  <label class="col-form-label" for="username">{{'LOGIN_FORM.Email' | translate }}</label>
+                  <input [(ngModel)]="loginModel.username" name="email" class="form-control" id="username" type="email" placeholder="{{'LOGIN_FORM.Email' | translate }}"/>
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label" for="password">{{'LOGIN_FORM.Password' | translate }}</label>
+                  <input [(ngModel)]="loginModel.password" name="password" class="form-control" id="password" type="password" placeholder="{{'LOGIN_FORM.Password' | translate }}"/>
+                </div>
+                <button class="btn btn-primary pull-right mb-3" type="submit">{{'LOGIN_FORM.Login' | translate }}</button>
+              </form>
             </div>
 
+
         </div>
+
+
 
         <div class="text-center">
             <appc-social-login></appc-social-login>
         </div>
 
     </div>
-    
+
 </div>
