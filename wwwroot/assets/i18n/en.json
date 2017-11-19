@@ -44,6 +44,9 @@
     "Username": "Username"
   },
   "Send_new_mail": " Send new mail",
+  "MAIL_VIEW": {
+    "From": "From:"
+  },
   "SORT_SEARCH_MAILS": {
     "Title": "Title",
     "Date": "Date",

@@ -1,6 +1,7 @@
 ﻿export class Mail {
     uniqueID: number;
-    to: string;
+    sender: string;
+    to:string;
     title: string;
     body: string;
     date: Date;

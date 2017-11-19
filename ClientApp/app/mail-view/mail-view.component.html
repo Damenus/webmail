@@ -1,8 +1,10 @@
-<p>
-  mail-view works!
-</p>
-
-<p>
-
-  {{ mailViewService.currentMail.body }}
-</p>
+<div class="container">
+  <h2>{{ mailViewService.currentMail.title}}</h2>
+  <blockquote class="blockquote">
+    <span>{{'MAIL_VIEW.From' | translate }} {{ mailViewService.currentMail.sender}}</span>
+  </blockquote>
+  <p>{{ mailViewService.currentMail.date | date:'dd/MM/yyyy HH:MM:SS'}}</p>
+  <p class="lead">
+    {{ mailViewService.currentMail.body }}
+  </p>
+</div>

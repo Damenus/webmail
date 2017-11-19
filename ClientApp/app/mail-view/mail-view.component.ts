@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MailsService } from "../mails/mails.service";
 import { MailViewService } from '../mail-view/mail-view.service';
 import { MailAccountsService } from "../mailAccounts/mailAccounts.service";
-// import { Mail } from "../core/models/mail";
 
 @Component({
   selector: 'appc-mail-view',
