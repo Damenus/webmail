@@ -5,15 +5,14 @@ import { MailServerModel } from "../core/models/mail-server-model";
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class mailAccountsService {
+export class MailAccountsService {
     public servers: Array<MailServerModel>;
+    public currentMailbox: MailServerModel;
 
     constructor(public dataService: DataService) { }
 
-    public getServers() {
-        this.dataService.get('/api/MailAccounts').subscribe(servers => {
-            this.servers = servers as Array<MailServerModel>;
-        });
+    public getServers(): Observable<any> {
+        return this.dataService.get('/api/MailAccounts') as Observable<Array<MailServerModel>>;
     }
 
     public setServers(toSend: MailServerModel): Observable<Array<MailServerModel>> {

@@ -23,6 +23,10 @@ export class MailsService {
         return this.dataService.get('api/mail?address=' + mailbox) as Observable<Array<Mail>>;
     }
 
+    public getMail(mailbox:String, id: number): Observable<Array<Mail>> {
+        return this.dataService.get('api/mail?address=' + mailbox + '&messageUID=' + id) as Observable<Array<Mail>>;
+    }
+
     public mailsFromMailbox(mailbox:String) {
        this._listners.next(mailbox);
     }

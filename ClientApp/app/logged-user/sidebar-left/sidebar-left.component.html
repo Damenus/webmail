@@ -4,7 +4,7 @@
 
         <ul class="nav nav-pills flex-column">
           <li class="row mt-1 nav-item" *ngFor="let server of mailAccountsService.servers">
-            <span class="nav-link col col-md-10 text-truncate" (click)="getMailsFromMailbox(server.mailAddress); setActive(this);">{{server.mailAddress}}</span>
+            <span class="nav-link col col-md-10 text-truncate" (click)="getMailsFromMailbox(server.mailAddress); setActive(server);">{{server.mailAddress}}</span>
             <div class="col col-md-2">
                 <button class="btn btn-danger" (click)="deleteServer(server)"><i class="fa fa-trash-o"></i></button>
             </div>

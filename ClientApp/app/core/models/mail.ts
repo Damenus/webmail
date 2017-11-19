@@ -1,5 +1,5 @@
 ﻿export class Mail {
-    id: number;
+    uniqueID: number;
     to: string;
     title: string;
     body: string;

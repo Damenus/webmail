@@ -20,12 +20,12 @@
 </div>
 <div class="list-group">
     <div *ngFor="let mail of mailsOnPage">
-        <a href="/loggeduser/mails/{{mail.title}}" class="list-group-item list-group-item-action">
+        <span (click)="openMail(mail)" class="list-group-item list-group-item-action">
           <p>
             {{mail.title}}
           </p>
           <p><em>{{mail.date | date:'HH:MM dd/MM/yyyy'}}</em></p>
-        </a>
+        </span>
 
     </div>
 </div>

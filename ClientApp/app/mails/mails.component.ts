@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MailsService } from "./mails.service";
 import { Mail } from "../core/models/mail";
+import { MailViewService } from '../mail-view/mail-view.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 export enum SortOrder {
   asc,
@@ -23,9 +25,18 @@ export class MailsComponent implements OnInit {
     public currentSortOrderTitle: SortOrder = this.sortOrderTitle;
     public sortOrderDate: SortOrder = SortOrder.desc;
     public currentSortOrderDate: SortOrder = this.sortOrderDate;
-    public loadingMails = false;
-    constructor(private mailsService: MailsService) {
+    public loadingMails:boolean = false;
+    public currentMailbox:String;
 
+    constructor(private mailsService: MailsService,
+                private mailViewService: MailViewService,
+                private router: Router,
+                private route: ActivatedRoute) {
+
+      // tutaj dodajemy listenera na eventy
+      // component lewego sidebaru po nacisnieciu danej skrzynki wysle poprzez
+      // mailservice informacje o wybraniu mailboxa - w tym momencie tutaj wywolujemy
+      // pobranie maili z wybranej skrzynki
       this.mailsService.listen().subscribe((m:any) => {
         this.getMailsFromMailbox(m);
       })
@@ -122,7 +133,6 @@ export class MailsComponent implements OnInit {
 
     }
 
-
     public searchInMails() {
         if (this.searched == "") {
             this.mailsAfterSearch = this.mailsFromServer;
@@ -145,6 +155,7 @@ export class MailsComponent implements OnInit {
 
     public getMailsFromMailbox(mailbox:String) {
       this.loadingMails = true;
+      this.currentMailbox = mailbox;
       this.mailsService.getMailsFromMailbox(mailbox).subscribe(mails => {
         this.loadingMails = false;
           if (mails) {
@@ -157,5 +168,11 @@ export class MailsComponent implements OnInit {
           //sortowanie po dacie
           this.changeSortOrderDate();
       });
+    }
+
+    public openMail(mail: Mail) {
+      console.log("Execute: openMail");
+      this.mailViewService.currentMail = mail;
+      this.router.navigate([`../mails/${mail.uniqueID}`], { relativeTo: this.route });
     }
 }

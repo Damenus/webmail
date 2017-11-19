@@ -23,7 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { mailAccounts } from '../mailAccounts/mailAccounts.component';
 
-import { mailAccountsService } from "../mailAccounts/mailAccounts.service";
+import { MailAccountsService } from "../mailAccounts/mailAccounts.service";
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -81,7 +81,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PageHeadingComponent,
     UppercasePipe
   ],
-  providers: [mailAccountsService]
+  providers: [MailAccountsService]
 
 })
 export class SharedModule {

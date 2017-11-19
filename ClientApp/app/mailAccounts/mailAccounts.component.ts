@@ -1,7 +1,7 @@
 ﻿import { Component, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MailServerModel } from "../core/models/mail-server-model";
-import { mailAccountsService } from "./mailAccounts.service";
+import { MailAccountsService } from "./mailAccounts.service";
 
 
 @Component({
@@ -12,7 +12,7 @@ import { mailAccountsService } from "./mailAccounts.service";
 })
 export class mailAccounts {
 
-    constructor(public activeModal: NgbActiveModal, private manageMailBoxService: mailAccountsService) { }
+    constructor(public activeModal: NgbActiveModal, private manageMailBoxService: MailAccountsService) { }
 
     public servers: any;
     public ImapServerAddress: String;
