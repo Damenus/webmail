@@ -1,5 +1,7 @@
 # webmail
 
+[![Build Status](https://travis-ci.org/Damenus/webmail.svg?branch=asp-net-core-spa)](https://travis-ci.org/Damenus/webmail)
+
 ## Project management
 We use taiga platform for project management. [Homepage our project](https://tree.taiga.io/project/damenus-webmail/)
 
