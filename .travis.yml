@@ -1,7 +1,10 @@
 language: csharp
+mono: none
+dotnet: 2.0.0
 dist: trusty
 sudo: required
-mono: none
-dotnet: 1.0.0
 script:
-  - ./build.sh --quiet verify
+  - dotnet restore
+  - dotnet build
+  - dotnet xunit -nobuild
+  # - ./build.sh --quiet verify
