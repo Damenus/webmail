@@ -36,8 +36,16 @@ namespace WebMail.Server.Controllers.api
         {
             int userId = Int32.Parse(_userManager.GetUserId(this.User));
 
-            var mailAccounts = _dbcontext.MailAccounts.Select(m => m).Where(m => m.UserID == userId);
-
+            var mailAccounts = _dbcontext.MailAccounts
+                .Select(m => new MailAccount
+                {
+                    ID = m.ID,
+                    UserID = m.UserID,
+                    MailAddress = m.MailAddress,
+                    ImapServerAddress = m.ImapServerAddress,
+                    SmtpServerAddress = m.SmtpServerAddress
+                }).Where(m => m.UserID == userId);
+            
             return mailAccounts;
         }
 
