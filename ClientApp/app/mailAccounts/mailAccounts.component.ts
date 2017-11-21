@@ -21,9 +21,15 @@ export class mailAccounts {
 
     public ngOnInit() {
         this.servers = require('./servers.json');
+        if (this.manageMailBoxService.edit) {         
+            this.MailAddress = this.manageMailBoxService.serverToEdit.mailAddress;
+            this.ImapServerAddress = this.manageMailBoxService.serverToEdit.imapServerAddress;
+            this.SmtpServerAddress = this.manageMailBoxService.serverToEdit.smtpServerAddress;
+        }
     }
     onSubmit(form: any) {
         var tmp: MailServerModel = {
+            id: this.manageMailBoxService.serverToEdit.id,
             imapServerAddress: form.value.ImapServerAddress,
             smtpServerAddress: form.value.SmtpServerAddress,
             password: form.value.Password,
@@ -33,8 +39,9 @@ export class mailAccounts {
         this.manageMailBoxService.setServers(tmp).subscribe(response => {
             console.log("Response: " + response);
             this.activeModal.close();
-            this.manageMailBoxService.getServers();
+            this.manageMailBoxService.refreshServers();
         });
+        this.manageMailBoxService.edit = false;
 
     }
 
@@ -63,5 +70,9 @@ export class mailAccounts {
             domain = "";
         }
 
+    }
+
+    close() {
+        this.manageMailBoxService.edit = false;
     }
 }

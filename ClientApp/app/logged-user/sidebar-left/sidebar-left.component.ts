@@ -3,6 +3,8 @@ import { MailAccountsService } from "../../mailAccounts/mailAccounts.service";
 import { MailServerModel } from "../../core/models/mail-server-model";
 import { MailsService } from "../../mails/mails.service";
 import { TranslateService } from '@ngx-translate/core';
+import { mailAccounts } from '../../mailAccounts/mailAccounts.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 // import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -11,11 +13,11 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./sidebar-left.component.scss']
 })
 export class SidebarLeftComponent {
-  private mailboxes: Array<MailServerModel>;
 
   constructor(private mailAccountsService: MailAccountsService,
     private translate: TranslateService,
     private mailsService: MailsService,
+    private modalService: NgbModal
     // private router: Router,
     // private route: ActivatedRoute
   ) {
@@ -23,11 +25,7 @@ export class SidebarLeftComponent {
 
 
   public ngOnInit() {
-    this.mailAccountsService.getServers().subscribe(servers => {
-      this.mailAccountsService.servers = servers as Array<MailServerModel>;
-      this.mailAccountsService.currentMailbox = this.mailAccountsService.servers[0];
-      this.mailboxes = servers as Array<MailServerModel>;
-    });
+      this.mailAccountsService.refreshServers();
   }
 
   deleteServer(server: any) {
@@ -35,10 +33,16 @@ export class SidebarLeftComponent {
       if (confirm(res)) {
         this.mailAccountsService.deleteServer(server.mailAddress).subscribe(response => {
           console.log("Response: " + response);
-          this.mailAccountsService.getServers();
+          this.mailAccountsService.refreshServers();
         });
       }
     });
+  }
+  editServer(server: any) {
+      console.log(server);
+      this.mailAccountsService.serverToEdit = server;
+      this.mailAccountsService.edit = true;
+      this.modalService.open(mailAccounts);
   }
 
   public getMailsFromMailbox(mailbox: String) {

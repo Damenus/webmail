@@ -4,8 +4,11 @@
 
         <ul class="nav nav-pills flex-column">
           <li class="row mt-1 nav-item" *ngFor="let server of mailAccountsService.servers">
-            <span class="nav-link col col-md-10 text-truncate" (click)="getMailsFromMailbox(server.mailAddress); setActive(server);">{{server.mailAddress}}</span>
-            <div class="col col-md-2">
+            <span class="nav-link col col-lg-10 col-md-10 col-sm-8" (click)="getMailsFromMailbox(server.mailAddress); setActive(server);">{{server.mailAddress}}</span>
+            <div class="col col-lg-1 col-md-1 col-sm-2">
+                <button class="btn" (click)="editServer(server)"><i class="fa  fa-cog"></i></button>
+            </div>    
+            <div class="col col-lg-1 col-md-1 col-sm-2">
                 <button class="btn btn-danger" (click)="deleteServer(server)"><i class="fa fa-trash-o"></i></button>
             </div>
           </li>
