@@ -20,6 +20,8 @@ using MimeKit;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using MailKit.Net.Smtp;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace WebMail.Server.Controllers.api
 {
@@ -60,7 +62,7 @@ namespace WebMail.Server.Controllers.api
                 //imapClient.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
                 imapClient.Connect(userMailAccount.ImapServerAddress, 993, SecureSocketOptions.SslOnConnect);
                 //imapClient.Authenticate("webmail2017.dev", "12341234xx");
-                imapClient.Authenticate(userMailAccount.MailAddress, userMailAccount.Password);
+                imapClient.Authenticate(userMailAccount.MailAddress, decryptPassword(userMailAccount.Password));
                 imapClient.Inbox.Open(FolderAccess.ReadOnly);
 
                 if (messageUID == null) //if uid parameter was not given - return all messages
@@ -96,7 +98,7 @@ namespace WebMail.Server.Controllers.api
 
                 imapClient.Disconnect(true);
             }
-            catch (Exception ex)
+            catch(Exception e)
             {
                 return null;
                 //return _dbContext.Mails; // return "hello world" mails from DB
@@ -184,7 +186,7 @@ namespace WebMail.Server.Controllers.api
                 using (SmtpClient smtpClient = new SmtpClient())
                 {
                     smtpClient.Connect(userMailAccount.SmtpServerAddress, 587);
-                    smtpClient.Authenticate(userMailAccount.MailAddress, userMailAccount.Password);
+                    smtpClient.Authenticate(userMailAccount.MailAddress, decryptPassword(userMailAccount.Password));
                     smtpClient.Send(message);
                     smtpClient.Disconnect(true);
                 }
@@ -195,6 +197,24 @@ namespace WebMail.Server.Controllers.api
             }
 
             return Content("SendMail completed successfully.");
+        }
+
+        private string decryptPassword(string encryptedPassword)
+        {
+            string decryptedPassword;
+            using (Aes aes = Aes.Create())
+            {
+                aes.Mode = CipherMode.ECB;
+                aes.KeySize = 128;
+                aes.Padding = PaddingMode.PKCS7;
+                aes.Key = Encoding.ASCII.GetBytes(Startup.Configuration["Data:PasswordEncryptionKey"]);
+
+                var decryptor = aes.CreateDecryptor();
+                byte[] encryptedPasswordBytes = Convert.FromBase64String(encryptedPassword);
+                byte[] decryptedBytes = decryptor.TransformFinalBlock(encryptedPasswordBytes, 0, encryptedPasswordBytes.Length);
+                decryptedPassword = Encoding.ASCII.GetString(decryptedBytes);
+            }
+            return decryptedPassword;
         }
     }
 }

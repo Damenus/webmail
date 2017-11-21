@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Authorization;
 using WebMail.Server.ViewModels.AccountViewModels;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace WebMail.Server.Controllers.api
 {
@@ -104,16 +106,30 @@ namespace WebMail.Server.Controllers.api
             int userId = Int32.Parse(_userManager.GetUserId(this.User));
             ApplicationUser user = _dbcontext.ApplicationUsers.Where(u => u.Id == userId).First();
 
+            // password encryption
+            string encryptedPassword = null;
+            using (Aes aes = Aes.Create())
+            {
+                aes.Mode = CipherMode.ECB;
+                aes.KeySize = 128;
+                aes.Padding = PaddingMode.PKCS7;
+                aes.Key = Encoding.UTF8.GetBytes(Startup.Configuration["Data:PasswordEncryptionKey"]);
+
+                var encryptor = aes.CreateEncryptor();
+                var passwordBytes = Encoding.ASCII.GetBytes(model.Password);
+                byte[] encryptedPasswordBytes = encryptor.TransformFinalBlock(passwordBytes, 0, passwordBytes.Length);
+                encryptedPassword = Convert.ToBase64String(encryptedPasswordBytes);
+            }
+
             var mailAccount = new MailAccount
             {
                 MailAddress = model.MailAddress,
                 ImapServerAddress = model.ImapServerAddress,
                 SmtpServerAddress = model.SmtpServerAddress,
-                Password = model.Password,
+                Password = encryptedPassword,
                 UserID = userId,
                 User = user
             };
-
             _dbcontext.MailAccounts.Add(mailAccount);
             user.MailAccounts.Add(mailAccount);
             _dbcontext.SaveChanges();
@@ -133,7 +149,7 @@ namespace WebMail.Server.Controllers.api
             int userId = Int32.Parse(_userManager.GetUserId(this.User));
             ApplicationUser user = _dbcontext.ApplicationUsers.Where(u => u.Id == userId).First();
 
-            var mailAccount = await _dbcontext.MailAccounts.SingleOrDefaultAsync(m => m.MailAddress == mailAddress && m.UserID == userId);
+            var mailAccount = _dbcontext.MailAccounts.Where(m => m.MailAddress == mailAddress && m.UserID == userId).First();
             if (mailAccount == null)
             {
                 return NotFound();
