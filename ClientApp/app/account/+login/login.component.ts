@@ -36,9 +36,8 @@ export class LoginComponent implements OnInit {
                 this.utilityService.navigate('loggeduser/mails');
             },
             (errors: any) => {
-              console.log("error");
-              console.log(errors);
-                this.errors.push(errors['error_description']);
+              let error = JSON.parse(errors.error);
+              this.errors.push(error['error_description']);
             });
     };
 

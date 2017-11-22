@@ -139,9 +139,8 @@ export class MailsComponent implements OnInit {
         }
         else {
             this.mailsAfterSearch = [];
-            console.log(this.searched);
             for (var i = 0; i < this.mailsFromServer.length; i++) {
-                if (this.mailsFromServer[i].title.indexOf(this.searched.toString()) !== -1) {
+                if (this.mailsFromServer[i].title.toLowerCase().indexOf(this.searched.toString().toLowerCase()) !== -1) {
                     this.mailsAfterSearch.push(this.mailsFromServer[i]);
                 }
             }

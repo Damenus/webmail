@@ -5,6 +5,7 @@
     </button>
 </div>
 <div class="modal-body">
+    <appc-error-summary [errors]="errors"></appc-error-summary>
     <form (ngSubmit)="onSubmit(addMountForm)" #addMountForm="ngForm">
         <div class="form-group">
             <label  class="col-sm-2 control-label text-nowrap"

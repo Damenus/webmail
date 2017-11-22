@@ -24,8 +24,9 @@ export class RegisterComponent implements OnInit {
             .subscribe((res: Response) => {
                 this.router.navigate(['../registerconfirmation'], { relativeTo: this.route, queryParams: { emailConfirmed: true } });
             },
-            (errors: string[]) => {
-                this.errors = errors;
+            (errors: any) => {
+                let error = JSON.parse(errors.error);
+                this.errors.push(error['error_description']);
             });
     };
 

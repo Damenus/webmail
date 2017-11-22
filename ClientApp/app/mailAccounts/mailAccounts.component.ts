@@ -18,29 +18,45 @@ export class mailAccounts {
     public ImapServerAddress: String;
     public SmtpServerAddress: String;
     public MailAddress: String;
+    public errors: string[] = [];
+    private id: number;
 
     public ngOnInit() {
+        this.id = -1;
         this.servers = require('./servers.json');
         if (this.manageMailBoxService.edit) {         
             this.MailAddress = this.manageMailBoxService.serverToEdit.mailAddress;
             this.ImapServerAddress = this.manageMailBoxService.serverToEdit.imapServerAddress;
             this.SmtpServerAddress = this.manageMailBoxService.serverToEdit.smtpServerAddress;
+            this.id = this.manageMailBoxService.serverToEdit.id;
         }
     }
     onSubmit(form: any) {
         var tmp: MailServerModel = {
-            id: this.manageMailBoxService.serverToEdit.id,
+            id: this.id,
             imapServerAddress: form.value.ImapServerAddress,
             smtpServerAddress: form.value.SmtpServerAddress,
             password: form.value.Password,
             mailAddress: form.value.MailAddress,
 
         };
-        this.manageMailBoxService.setServers(tmp).subscribe(response => {
-            console.log("Response: " + response);
+
+        if (this.manageMailBoxService.edit) {
+            console.log("powinienem edytowac: " + tmp);
             this.activeModal.close();
             this.manageMailBoxService.refreshServers();
-        });
+        }
+        else {
+            this.manageMailBoxService.setServers(tmp).subscribe(response => {
+                console.log("Response: " + response);
+                this.activeModal.close();
+                this.manageMailBoxService.refreshServers();
+            },
+            (errors: any) => {
+                let error = JSON.parse(errors.error);
+                this.errors=error;
+            });
+        }  
         this.manageMailBoxService.edit = false;
 
     }
