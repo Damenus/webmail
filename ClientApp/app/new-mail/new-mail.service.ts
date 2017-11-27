@@ -10,9 +10,11 @@ export class NewMailService {
 
   sendMail(mail: Mail): Observable<any> {
       return this.dataService.post('/api/Mail/SendMail', {
-      receiver: mail.to,
-      subject: mail.title,
-      body: mail.body
+          receiver: mail.to,
+          subject: mail.title,
+          body: mail.body,
+          attachment: mail.attachment,
+          attachmentName: mail.attachmentName
     });
   }
 

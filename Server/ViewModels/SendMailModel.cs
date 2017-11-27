@@ -11,5 +11,7 @@ namespace WebMail.Server.ViewModels
         public string Subject { get; set; }
         [Required]
         public string Body { get; set; }
+        public string AttachmentName { get; set; }
+        public string Attachment { get; set; }
     }
 }

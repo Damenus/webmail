@@ -22,6 +22,7 @@ using System.Security.Claims;
 using MailKit.Net.Smtp;
 using System.Security.Cryptography;
 using System.Text;
+using System.IO;
 
 namespace WebMail.Server.Controllers.api
 {
@@ -169,6 +170,7 @@ namespace WebMail.Server.Controllers.api
             string receiver = model.Receiver;
             string subject = model.Subject;
             string body = model.Body;
+            string attachment = model.Attachment;
 
             int userId = Int32.Parse(_userManager.GetUserId(this.User));
             MailAccount userMailAccount = _dbContext.MailAccounts.Where(a => a.UserID == userId).First();
@@ -178,7 +180,16 @@ namespace WebMail.Server.Controllers.api
                 message.From.Add(new MailboxAddress("", userMailAccount.MailAddress));
                 message.To.Add(new MailboxAddress("", receiver));
                 message.Subject = subject;
-                message.Body = new TextPart("plain") { Text = body };
+
+                var builder = new BodyBuilder { TextBody = body };
+
+                if (attachment != null)
+                {
+                    byte[] attachmentData = Convert.FromBase64String(model.Attachment);
+                    builder.Attachments.Add(model.AttachmentName ?? "Attachment", attachmentData);
+                }
+
+                message.Body = builder.ToMessageBody();
             }
             catch (Exception ex)
             {

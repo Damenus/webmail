@@ -5,4 +5,6 @@
     title: string;
     body: string;
     date: Date;
+    attachmentName: string;
+    attachment: string;
 }
