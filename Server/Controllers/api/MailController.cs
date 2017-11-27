@@ -164,8 +164,12 @@ namespace WebMail.Server.Controllers.api
         }*/
 
         [HttpPost("SendMail")]
-        public IActionResult SendMail(string receiver, string subject, string body)
+        public IActionResult SendMail([FromBody] SendMailModel model)
         {
+            string receiver = model.Receiver;
+            string subject = model.Subject;
+            string body = model.Body;
+
             int userId = Int32.Parse(_userManager.GetUserId(this.User));
             MailAccount userMailAccount = _dbContext.MailAccounts.Where(a => a.UserID == userId).First();
             MimeMessage message = new MimeMessage();
