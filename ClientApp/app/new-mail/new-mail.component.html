@@ -1,4 +1,5 @@
 <div>
+  <appc-error-summary [errors]="errors"></appc-error-summary>
   <form class="form-horizontal" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="inputEmail" class="col-sm-2 control-label">{{'NEW_MAIL.To' | translate}}</label>

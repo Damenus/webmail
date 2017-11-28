@@ -18,6 +18,8 @@ function getBase64(file: File): Promise<string> {
 })
 export class NewMailComponent implements OnInit {
 
+  public errors: string[] = [];
+
   constructor(private newMailService: NewMailService) { }
 
   model = new Mail();
@@ -45,7 +47,11 @@ export class NewMailComponent implements OnInit {
       console.log(this.model);
       this.newMailService.sendMail(this.model).subscribe(response => {
           console.log("Response: " + response);
-      });;
+      },
+      (errors: any) => {
+          let error = JSON.parse(errors.error);
+          this.errors = error;
+      });
   }
 
 }
