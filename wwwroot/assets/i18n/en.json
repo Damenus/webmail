@@ -55,5 +55,10 @@
   },
   "Title": "WebMail",
   "Confirm_delete_mailbox": "Are you sure want to delete this mailbox: {{mailbox}}",
-  "Empty": "Empty..."
+  "Empty": "Empty...",
+  "Validation": {
+    "Requied": "is regquied",
+    "Email": "is not a correct email adress",
+    "ServerAddress": "is not a correct adres of mail server"
+  }
 }

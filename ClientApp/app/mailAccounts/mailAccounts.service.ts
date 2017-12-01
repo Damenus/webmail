@@ -22,6 +22,9 @@ export class MailAccountsService {
     public refreshServers() {
         this.dataService.get('/api/MailAccounts').subscribe(servers => {
                 this.servers = servers as Array<MailServerModel>;
+                if (this.servers.length > 0) {
+                    this.currentMailbox = this.servers[0];
+                }
             });
     }
 

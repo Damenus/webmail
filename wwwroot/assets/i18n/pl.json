@@ -55,5 +55,10 @@
   "Empty": "Pusto...",
   "MAIL_VIEW": {
     "From": "Od:"
+  },
+  "Validation": {
+    "Requied": "jest wymagany",
+    "Email": "nie jest poprawnym adresem mailowym",
+    "ServerAddress": "nie jest poprawnym adresem serwera mailowego"
   }
 }

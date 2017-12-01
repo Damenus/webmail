@@ -7,23 +7,28 @@
                 {{ 'LOGIN_FORM.Login' | translate }}
             </div>
 
-
-            <!-- <div class="card-block container">
-                <appc-error-summary [errors]="errors"></appc-error-summary>
-                <appc-dynamic-form (formsubmit)="login($event)" [controls]="controls" [btnText]="login_button_translation"></appc-dynamic-form>
-            </div> -->
-
             <div class="card-block container">
               <appc-error-summary [errors]="errors"></appc-error-summary>
-              <form class="form-horizontal" (ngSubmit)="login()">
-                <div class="form-group">
-                  <label class="col-form-label" for="username">{{'LOGIN_FORM.Email' | translate }}</label>
-                  <input [(ngModel)]="loginModel.username" name="email" class="form-control" id="username" type="email" placeholder="{{'LOGIN_FORM.Email' | translate }}"/>
+              <form class="form-horizontal" (ngSubmit)="login()" [formGroup]="loginForm">
+               
+                 <div class="form-group">
+                  <label class="col-form-label " for="username">{{'LOGIN_FORM.Email' | translate }}</label>
+                  <input formControlName="username" name="email" class="form-control" id="username" type="email" placeholder="{{'LOGIN_FORM.Email' | translate }}"/>
+                     <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+                         <div *ngIf="username.errors.required">{{'LOGIN_FORM.Email' | translate}} {{'Validation.Requied' | translate}}</div>
+                     </div>
                 </div>
+
                 <div class="form-group">
                   <label class="col-form-label" for="password">{{'LOGIN_FORM.Password' | translate }}</label>
-                  <input [(ngModel)]="loginModel.password" name="password" class="form-control" id="password" type="password" placeholder="{{'LOGIN_FORM.Password' | translate }}"/>
+                  <input formControlName="password" name="password" class="form-control" id="password" type="password" placeholder="{{'LOGIN_FORM.Password' | translate }}"/>
+                    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                        <div *ngIf="password.errors.required">{{'LOGIN_FORM.Password' | translate}} {{'Validation.Requied' | translate}}</div>
+                    </div>
                 </div>
+
+
+
                 <button class="btn btn-primary pull-right mb-3" type="submit">{{'LOGIN_FORM.Login' | translate }}</button>
               </form>
             </div>

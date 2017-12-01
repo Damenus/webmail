@@ -43,7 +43,10 @@
 
   <ItemGroup>
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
+    <Compile Remove="ClientApp\app\shared\directives\Validators\**" />
     <Content Remove="ClientApp\**" />
+    <EmbeddedResource Remove="ClientApp\app\shared\directives\Validators\**" />
+    <None Remove="ClientApp\app\shared\directives\Validators\**" />
   </ItemGroup>
 
   <ItemGroup>

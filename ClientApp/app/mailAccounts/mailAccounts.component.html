@@ -6,29 +6,52 @@
 </div>
 <div class="modal-body">
     <appc-error-summary [errors]="errors"></appc-error-summary>
-    <form (ngSubmit)="onSubmit(addMountForm)" #addMountForm="ngForm">
+    <form (ngSubmit)="onSubmit(addMailAccounts)" [formGroup]="mailAccountForm" #addMailAccounts="ngForm">
         <div class="form-group">
-            <label  class="col-sm-2 control-label text-nowrap"
-                   for="MailAddress">{{'MailAccounts.Email' | translate}}</label>
+
+            <label class="col-sm-2 control-label text-nowrap" for="MailAddress">{{'MailAccounts.Email' | translate}}</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" (keyup)="onEmailChange()" [(ngModel)]="MailAddress" id="MailAddress" name="MailAddress" placeholder="{{'MailAccounts.Email' | translate}}" />
+                <input type="email" class="form-control" id="mailAddress" formControlName="mailAddress" (keyup)="onEmailChange()" (blur)="onEmailChange()" placeholder="{{'MailAccounts.Email' | translate}}" />
+                
+                <div *ngIf="mailAddress.invalid && (mailAddress.dirty || mailAddress.touched)" class="alert alert-danger">
+                    <div *ngIf="mailAddress.errors.required">{{'MailAccounts.Email' | translate}} {{'Validation.Requied' | translate}}</div>
+                    <div *ngIf="mailAddress.errors.email">{{'MailAccounts.Email' | translate}} {{'Validation.Email' | translate}}</div>                    
+                </div>
+
             </div>
-            <label class="col-sm-2 control-label text-nowrap"
-                   for="Password">{{'MailAccounts.Password' | translate}}</label>
+
+            <label class="col-sm-2 control-label text-nowrap"  for="Password">{{'MailAccounts.Password' | translate}}</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" ngModel id="Password" name="Password" placeholder="{{'MailAccounts.Password' | translate}}" />
+                <input type="password" class="form-control" formControlName="password" placeholder="{{'MailAccounts.Password' | translate}}" />
+               
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                    <div *ngIf="password.errors.required">{{'MailAccounts.Password' | translate}} {{'Validation.Requied' | translate}}</div>
+                </div>
+
             </div>
+
             <label class="col-sm-2 control-label text-nowrap"
                    for="ImapServerAddress">{{'MailAccounts.ImapServer' | translate}}</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" [(ngModel)]="ImapServerAddress" id="ImapServerAddress" name="ImapServerAddress" placeholder="{{'MailAccounts.ImapServer' | translate}}" >
+                <input type="text" class="form-control"  id="imapServerAddress" formControlName="imapServerAddress" placeholder="{{'MailAccounts.ImapServer' | translate}}" >
+                <div *ngIf="imapServerAddress.invalid && (imapServerAddress.dirty || imapServerAddress.touched)" class="alert alert-danger">
+                    <div *ngIf="imapServerAddress.errors.required">{{'MailAccounts.ImapServer' | translate}} {{'Validation.Requied' | translate}}</div>
+                    <div *ngIf="imapServerAddress.errors.validServerAddress">{{'MailAccounts.ImapServer' | translate}} {{'Validation.ServerAddress' | translate}}</div>
+                    
+                </div>
             </div>
+
             <label class="col-sm-2 control-label text-nowrap"
                    for="SmtpServerAddress">{{'MailAccounts.SmtpServer' | translate}}</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control"  [(ngModel)]="SmtpServerAddress" id="SmtpServerAddress" name="SmtpServerAddress" placeholder="{{'MailAccounts.SmtpServer' | translate}}" />
+                <input type="text" class="form-control" id="smtpServerAddress" formControlName="smtpServerAddress" placeholder="{{'MailAccounts.SmtpServer' | translate}}" />
+                <div *ngIf="smtpServerAddress.invalid && (smtpServerAddress.dirty || smtpServerAddress.touched)" class="alert alert-danger">
+                    <div *ngIf="smtpServerAddress.errors.required">{{'MailAccounts.SmtpServer' | translate}} {{'Validation.Requied' | translate}}</div>
+                    <div *ngIf="smtpServerAddress.errors.validServerAddress">{{'MailAccounts.SmtpServer' | translate}} {{'Validation.ServerAddress' | translate}}</div>
+                </div>
             </div>
+
         </div>
-        <button type="submit" class="btn btn-primary">{{'MailAccounts.Add' | translate}}</button>
+        <button [disabled]="addMailAccounts.invalid" type="submit" class="btn btn-primary">{{'MailAccounts.Add' | translate}}</button>
     </form>
 </div>
