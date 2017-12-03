@@ -73,15 +73,24 @@ namespace WebMail.Server.Controllers.api
 
                     foreach (var summary in summaries)
                     {
-                        var textBody = summary.TextBody;
-                        var bodyPart = (TextPart)imapClient.Inbox.GetBodyPart(summary.UniqueId, textBody);
+                        string bodyText = "";
+                        try
+                        {
+                            var textBody = summary.TextBody;
+                            var bodyPart = (TextPart)imapClient.Inbox.GetBodyPart(summary.UniqueId, textBody);
+                            bodyText = bodyPart.Text;
+                        }
+                        catch(Exception ex)
+                        {
+                            bodyText = "";
+                        }
 
                         mails.Add(new Mail
                         {
                             UniqueID = summary.UniqueId.Id,
                             Sender = summary.Envelope.From.ToString(),
                             Title = summary.Envelope.Subject,
-                            Body = bodyPart.Text,
+                            Body = bodyText,
                             Date = (DateTimeOffset)summary.Envelope.Date
                         });
                     }
