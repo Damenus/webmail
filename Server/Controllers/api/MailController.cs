@@ -69,17 +69,20 @@ namespace WebMail.Server.Controllers.api
                 if (messageUID == null) //if uid parameter was not given - return all messages
                 {
                     var uidsFromServer = imapClient.Inbox.Search(SearchQuery.All);
+                    var summaries = imapClient.Inbox.Fetch(uidsFromServer, MessageSummaryItems.Full | MessageSummaryItems.Envelope | MessageSummaryItems.UniqueId);
 
-                    foreach (UniqueId uid in uidsFromServer)
+                    foreach (var summary in summaries)
                     {
-                        MimeMessage message = imapClient.Inbox.GetMessage(uid);
+                        var textBody = summary.TextBody;
+                        var bodyPart = (TextPart)imapClient.Inbox.GetBodyPart(summary.UniqueId, textBody);
+
                         mails.Add(new Mail
                         {
-                            UniqueID = uid.Id,
-                            Sender = message.From.ToString(),
-                            Title = message.Subject,
-                            Body = message.TextBody,
-                            Date = message.Date
+                            UniqueID = summary.UniqueId.Id,
+                            Sender = summary.Envelope.From.ToString(),
+                            Title = summary.Envelope.Subject,
+                            Body = bodyPart.Text,
+                            Date = (DateTimeOffset)summary.Envelope.Date
                         });
                     }
                 }
