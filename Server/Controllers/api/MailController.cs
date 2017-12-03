@@ -164,6 +164,36 @@ namespace WebMail.Server.Controllers.api
              return Content("UpdateInboxMails completed successfully.");
          }*/
 
+        [HttpGet("Drafts")]
+        public IEnumerable<Mail> GetDrafts([FromQuery] uint? messageID)
+        {
+            int userId = Int32.Parse(_userManager.GetUserId(this.User));
+
+            IQueryable<MailAccount> query;
+            query = _dbContext.MailAccounts.Where(a => a.UserID == userId);
+            
+            if (!query.Any())   // if given email was not found
+                return null;
+
+            MailAccount userMailAccount = query.First();
+            try
+            {
+                if (messageID == null) //if uid parameter was not given - return all messages
+                {
+                    return _dbContext.Drafts.Where(d => d.Sender == userMailAccount.MailAddress).ToHashSet();
+                }
+                else        //if uid parameter was given - return precise message
+                {
+                    return _dbContext.Drafts.Where(d => d.Sender == userMailAccount.MailAddress && d.ID == messageID).ToHashSet();
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+                //return _dbContext.Mails; // return "hello world" mails from DB
+            }
+        }
+
         [HttpPost("SaveDraft")]
         public IActionResult SaveDraft([FromBody] SendMailModel model)
         {
