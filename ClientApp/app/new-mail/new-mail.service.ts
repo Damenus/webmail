@@ -18,4 +18,14 @@ export class NewMailService {
     });
   }
 
+  saveDraft(mail: Mail): Observable<any> {
+      return this.dataService.post('/api/Mail/SaveDraft', {
+          receiver: mail.to,
+          subject: mail.title,
+          body: mail.body,
+          attachment: mail.attachment,
+          attachmentName: mail.attachmentName
+      });
+  }
+
 }

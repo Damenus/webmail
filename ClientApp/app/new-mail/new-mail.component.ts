@@ -54,4 +54,15 @@ export class NewMailComponent implements OnInit {
       });
   }
 
+  onSaveDraft() {
+      console.log(this.model);
+      this.newMailService.saveDraft(this.model).subscribe(response => {
+          console.log("Response: " + response);
+      },
+      (errors: any) => {
+          let error = JSON.parse(errors.error);
+          this.errors = error;
+      });
+  }
+
 }

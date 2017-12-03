@@ -165,7 +165,7 @@ namespace WebMail.Server.Controllers.api
          }*/
 
         [HttpGet("Drafts")]
-        public IEnumerable<Mail> GetDrafts([FromQuery] uint? messageID)
+        public IEnumerable<Draft> GetDrafts([FromQuery] uint? messageID)
         {
             int userId = Int32.Parse(_userManager.GetUserId(this.User));
 
@@ -201,7 +201,7 @@ namespace WebMail.Server.Controllers.api
             {
                 int userId = Int32.Parse(_userManager.GetUserId(this.User));
                 MailAccount userMailAccount = _dbContext.MailAccounts.Where(a => a.UserID == userId).First();
-                Mail draft = new Mail
+                Draft draft = new Draft
                 {
                     Receiver = model.Receiver,
                     Title = model.Subject,
