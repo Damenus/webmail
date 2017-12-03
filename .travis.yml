@@ -5,6 +5,6 @@ dist: trusty
 sudo: required
 script:
   - dotnet restore
-  - dotnet build
-  - dotnet xunit -nobuild
+  # - dotnet build
+  - dotnet xunit # -nobuild
   # - ./build.sh --quiet verify
