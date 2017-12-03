@@ -40,7 +40,7 @@ namespace WebMail.Server.Controllers.api
             _userManager = userManager;
         }
 
-        // eg. api/mail/email?address=webmailtest@onet.pl
+        // api/mail?[address=<mail_address>]&[messageUID=<UID>]
         [HttpGet]
         public IEnumerable<Mail> GetMailsFromGivenMailbox([FromQuery] string address, [FromQuery] uint? messageUID) 
         {
@@ -83,7 +83,7 @@ namespace WebMail.Server.Controllers.api
                         });
                     }
                 }
-                else        //if uid parameter was give - return precise message
+                else        //if uid parameter was given - return precise message
                 {
                     UniqueId uid = new UniqueId((uint)messageUID);
                     MimeMessage message = imapClient.Inbox.GetMessage(uid);
@@ -108,61 +108,88 @@ namespace WebMail.Server.Controllers.api
             return mails;
         }
 
-       /* [HttpPut("UpdateInboxMails")]
-        public IActionResult UpdateInboxMails()
+        /* [HttpPut("UpdateInboxMails")]
+         public IActionResult UpdateInboxMails()
+         {
+             ImapClient imapClient = new ImapClient();
+
+             try
+             {
+                 imapClient.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
+             }
+             catch (Exception ex)
+             {
+                 return Content("Error while trying to connect IMAP server: {0}", ex.Message);
+             }
+
+             try
+             {
+                 imapClient.Authenticate("webmail2017.dev", "12341234xx");
+             }
+             catch (Exception ex)
+             {
+                 return Content("IMAP authentication error: {0}", ex.Message);
+             }
+
+             try
+             {
+                 imapClient.Inbox.Open(FolderAccess.ReadOnly);
+                 var uidsFromServer = imapClient.Inbox.Search(SearchQuery.All);
+                 var uidsFromDB = GetMails().Select(m => m.UniqueID);
+
+                 foreach (UniqueId uid in uidsFromServer)
+                 {
+                     if (!uidsFromDB.Contains(uid.Id))
+                     {
+                         MimeMessage message = imapClient.Inbox.GetMessage(uid);
+                         _dbContext.Mails.Add(new Mail
+                         {
+                             UniqueID = uid.Id,
+                             Sender = message.From.ToString(),
+                             Title = message.Subject,
+                             Body = message.TextBody,
+                             Date = message.Date
+                         });
+                         _dbContext.SaveChanges();
+                     }
+                 }
+
+                 imapClient.Disconnect(true);
+             }
+             catch (Exception ex)
+             {
+                 return Content("Error while trying to download mails from IMAP server: {0}", ex.Message);
+             }
+
+             return Content("UpdateInboxMails completed successfully.");
+         }*/
+
+        [HttpPost("SaveDraft")]
+        public IActionResult SaveDraft([FromBody] SendMailModel model)
         {
-            ImapClient imapClient = new ImapClient();
-
             try
             {
-                imapClient.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
-            }
-            catch (Exception ex)
-            {
-                return Content("Error while trying to connect IMAP server: {0}", ex.Message);
-            }
-
-            try
-            {
-                imapClient.Authenticate("webmail2017.dev", "12341234xx");
-            }
-            catch (Exception ex)
-            {
-                return Content("IMAP authentication error: {0}", ex.Message);
-            }
-
-            try
-            {
-                imapClient.Inbox.Open(FolderAccess.ReadOnly);
-                var uidsFromServer = imapClient.Inbox.Search(SearchQuery.All);
-                var uidsFromDB = GetMails().Select(m => m.UniqueID);
-
-                foreach (UniqueId uid in uidsFromServer)
+                int userId = Int32.Parse(_userManager.GetUserId(this.User));
+                MailAccount userMailAccount = _dbContext.MailAccounts.Where(a => a.UserID == userId).First();
+                Mail draft = new Mail
                 {
-                    if (!uidsFromDB.Contains(uid.Id))
-                    {
-                        MimeMessage message = imapClient.Inbox.GetMessage(uid);
-                        _dbContext.Mails.Add(new Mail
-                        {
-                            UniqueID = uid.Id,
-                            Sender = message.From.ToString(),
-                            Title = message.Subject,
-                            Body = message.TextBody,
-                            Date = message.Date
-                        });
-                        _dbContext.SaveChanges();
-                    }
-                }
+                    Receiver = model.Receiver,
+                    Title = model.Subject,
+                    Body = model.Body,
+                    Attachment = model.Attachment,
+                    Sender = userMailAccount.MailAddress
+                };
 
-                imapClient.Disconnect(true);
+                _dbContext.Drafts.Add(draft);
+                _dbContext.SaveChanges();
             }
             catch (Exception ex)
             {
-                return Content("Error while trying to download mails from IMAP server: {0}", ex.Message);
+                return Content("Error while trying to save draft: ", ex.Message);
             }
 
-            return Content("UpdateInboxMails completed successfully.");
-        }*/
+            return Content("SaveDraft completed successfully.");
+        }
 
         [HttpPost("SendMail")]
         public IActionResult SendMail([FromBody] SendMailModel model)
