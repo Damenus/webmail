@@ -61,5 +61,6 @@
     "Requied": "jest wymagany",
     "Email": "nie jest poprawnym adresem mailowym",
     "ServerAddress": "nie jest poprawnym adresem serwera mailowego"
-  }
+  },
+  "Drafts": "Maile robocze"
 }

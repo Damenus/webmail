@@ -61,5 +61,6 @@
     "Requied": "is regquied",
     "Email": "is not a correct email adress",
     "ServerAddress": "is not a correct adres of mail server"
-  }
+  },
+  "Drafts": "Draft mails"
 }

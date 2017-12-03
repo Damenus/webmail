@@ -28,4 +28,8 @@ export class NewMailService {
       });
   }
 
+  getDraft( id: number): Observable<Array<any>> {
+      return this.dataService.get('api/Mail/Drafts?messageID=' + id) as Observable<Array<any>>;
+  }
+
 }

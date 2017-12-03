@@ -5,6 +5,7 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
 import { MailsModule } from './mails/mails.module';
+import { DraftsModule } from './drafts/drafts.module';
 import { NewMailModule } from './new-mail/new-mail.module';
 import { LoggedUserModule } from './logged-user/logged-user.module';
 
@@ -25,6 +26,7 @@ import { MailViewModule } from './mail-view/mail-view.module';
         SharedModule.forRoot(),
         HomeModule,
         MailsModule,
+        DraftsModule,
         NewMailModule,
         LoggedUserModule,
         MailViewModule,

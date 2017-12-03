@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewMailService } from './new-mail.service';
 import { Mail } from '../core/models/mail';
+import { ActivatedRoute, Params } from '@angular/router';
 
 function getBase64(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
@@ -20,11 +21,26 @@ export class NewMailComponent implements OnInit {
 
   public errors: string[] = [];
 
-  constructor(private newMailService: NewMailService) { }
+  constructor(private newMailService: NewMailService, private activatedRoute: ActivatedRoute) { }
 
   model = new Mail();
 
   ngOnInit() {
+      this.activatedRoute.queryParams.subscribe((params: Params) => {
+          if (params['draftId'] != null) {
+              console.log("jest");
+              this.newMailService.getDraft(params['draftId']).subscribe(response => {
+                  console.log(response);
+                  this.model.body = response[0].body;
+                  this.model.title = response[0].title;
+                  this.model.to = response[0].receiver;
+              },
+                  (errors: any) => {
+                      let error = JSON.parse(errors.error);
+                      this.errors = error;
+                  });
+          }
+      });
   }
 
   onAttachmentChange(event: EventTarget) {

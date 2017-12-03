@@ -1,0 +1,32 @@
+<div class="pb-3 align-middle">
+  <label>{{'SORT_SEARCH_MAILS.Label' | translate}}</label>
+  <div class="btn-group">
+      <button type="button" class="btn btn-primary" (click)="changeSortOrderTitle()">
+        {{'SORT_SEARCH_MAILS.Title' | translate}}
+        <i *ngIf="!currentSortOrderTitle" class="fa fa-arrow-up"></i><i *ngIf="currentSortOrderTitle" class="fa fa-arrow-down"></i>
+      </button>
+      <button type="button" class="btn btn-primary" (click)="changeSortOrderDate()" >
+        {{'SORT_SEARCH_MAILS.Date' | translate}}
+        <i *ngIf="!currentSortOrderDate" class="fa fa-arrow-up"></i><i *ngIf="currentSortOrderDate" class="fa fa-arrow-down"></i>
+      </button>
+  </div>
+  <input class="form-control pull-right" type="text" [(ngModel)]="searched" (keyup)="searchInDrafts()" placeholder="{{'SORT_SEARCH_MAILS.Search' | translate}}">
+</div>
+<div *ngIf="loadingMails" class="text-center">
+  <i class="fa fa-circle-o-notch fa-spin fa-2x"></i>
+</div>
+<div *ngIf="draftsOnPage.length == 0" class="text-center">
+  <span>{{ 'Empty' | translate }}</span> <i class="fa fa-frown-o"></i>
+</div>
+<div class="list-group">
+    <div *ngFor="let draft of draftsOnPage">
+        <span (click)="openMail(draft)" class="list-group-item list-group-item-action">
+          <p>
+            {{draft.title}}
+          </p>
+          <p><em>{{draft.date | date:'HH:MM dd/MM/yyyy'}}</em></p>
+        </span>
+
+    </div>
+</div>
+<ngb-pagination [pageSize]="maxDraftsOnPage" [collectionSize]="draftsAfterSearch.length" [(page)]="page" (pageChange)="getPartOfDrafts()"></ngb-pagination>
