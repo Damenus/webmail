@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewMailService } from './new-mail.service';
 import { Mail } from '../core/models/mail';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 function getBase64(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
@@ -19,9 +19,10 @@ function getBase64(file: File): Promise<string> {
 })
 export class NewMailComponent implements OnInit {
 
-  public errors: string[] = [];
+    public errors: string[] = [];
+    public sendingMail: boolean = false;
 
-  constructor(private newMailService: NewMailService, private activatedRoute: ActivatedRoute) { }
+  constructor(private newMailService: NewMailService, private activatedRoute: ActivatedRoute, private router: Router,) { }
 
   model = new Mail();
 
@@ -61,24 +62,50 @@ export class NewMailComponent implements OnInit {
 
   onSubmit() {
       console.log(this.model);
+      this.startSending();
       this.newMailService.sendMail(this.model).subscribe(response => {
-          console.log("Response: " + response);
+          this.stopSending();
+          this.router.navigate([`../mails`], { relativeTo: this.activatedRoute });
       },
       (errors: any) => {
-          let error = JSON.parse(errors.error);
-          this.errors = error;
+          if (errors.status == 200) {
+              this.stopSending();
+              this.router.navigate([`../mails`], { relativeTo: this.activatedRoute });
+          }
+          else {
+              this.stopSending();
+              let error = JSON.parse(errors.error);
+              this.errors = error;
+          }
       });
   }
 
   onSaveDraft() {
       console.log(this.model);
+      this.startSending();
       this.newMailService.saveDraft(this.model).subscribe(response => {
           console.log("Response: " + response);
+          this.stopSending();
+          this.router.navigate([`../mails`], { relativeTo: this.activatedRoute });
       },
-      (errors: any) => {
-          let error = JSON.parse(errors.error);
-          this.errors = error;
+          (errors: any) => {
+              if (errors.status == 200) {
+                  this.stopSending();
+                  this.router.navigate([`../mails`], { relativeTo: this.activatedRoute });
+              }
+              else {
+                  let error = JSON.parse(errors.error);
+                  this.stopSending();
+                  this.errors = error;
+              }
+          
       });
   }
 
+  startSending() {
+      this.sendingMail = true;
+  }
+  stopSending() {
+      this.sendingMail = false;
+  }
 }

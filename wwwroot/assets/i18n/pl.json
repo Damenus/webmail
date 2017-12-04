@@ -28,7 +28,9 @@
     "Title": "Tytuł:",
     "Body": "Treść:",
     "Send": "Wyślij",
-    "SaveDraft": "Zapisz kopię roboczą"
+    "SaveDraft": "Zapisz kopię roboczą",
+    "Attachment": "Załącznik",
+    "sendingMail": "Wysyłanie lub zapisywanie maila"
   },
   "Or": "LUB",
   "Profile": "Profil",

@@ -28,7 +28,9 @@
     "Title": "Title:",
     "Body": "Body:",
     "Send": "Send",
-    "SaveDraft": "Save Draft"
+    "SaveDraft": "Save Draft",
+    "Attachment": "Atachment",
+    "sendingMail": "Sending or Saving Mails"
   },
   "Or": "OR",
   "Profile": "Profile",
