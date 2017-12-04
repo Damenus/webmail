@@ -12,7 +12,7 @@ Student project consisting in creating a modern webmail client
 
 ```bash
 docker pull damenus/webmail:asp-net-core-spa
-docker run -it -d -p 85:80 damenus/webmail:asp-net-core-spa
+docker run -it -d -p 26847:80 damenus/webmail:asp-net-core-spa
 ```
 
 [Link to docker repo](https://hub.docker.com/r/damenus/webmail/)
@@ -21,6 +21,6 @@ If you want build docker image localy, go to directory and use this commands.
 
 ```bash
 docker build -t myapp .
-docker run -it -d -p 85:80 myapp
+docker run -it -d -p 26847:80 myapp
 ```
 The application will work on [localhost:85](http://localhost:85)
