@@ -24,3 +24,5 @@ docker build -t myapp .
 docker run -it -d -p 26847:80 myapp
 ```
 The application will work on [localhost:85](http://localhost:26847)
+
+[Project](https://github.com/asadsahi/AspNetCoreSpa)
