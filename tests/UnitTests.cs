@@ -110,12 +110,12 @@ namespace WebMailTests
         }
 
         [Fact]
-        public void TestToString()
+        public void TestValidationToString()
         {
             ValidationErrorCollection validationErrorCollection = new ValidationErrorCollection();
             var html = validationErrorCollection.ToHtml();
 
-            Assert.True( html == "");
+            Assert.True(html == "");
         }
         
         [Fact]
@@ -138,18 +138,19 @@ namespace WebMailTests
             
             //  cconfiguration["Data:PasswordEncryptionKey"] = "ss";
 
-            // var startup = new Startup(cconfiguration,env.Object);
+            var startup = new Startup(configuration.Object,env.Object);
+            Startup.Configuration["Data:PasswordEncryptionKey"] = "ss";
+
+            // var startup = new Mock<Startup>(configuration.Object,env.Object);
             // Startup.Configuration["Data:PasswordEncryptionKey"] = "ss";
+            MailController mailController = new MailController(dbContext.Object, userManager);
 
-            // // var startup = new Mock<Startup>(configuration.Object,env.Object);
-            // // Startup.Configuration["Data:PasswordEncryptionKey"] = "ss";
-            // MailController mailController = new MailController(dbContext.Object, userManager);
+            byte[] bytes = Encoding.UTF8.GetBytes("abcde1234f");
+            string base64 = Convert.ToBase64String(bytes);
 
-            // var pass = "AlaMaKota";
-            // var encrypt = mailController.decryptPasswordMethod(pass);
-            // var decrypt = mailController.decryptPasswordMethod(encrypt);
+            var decrypt = mailController.decryptPasswordMethod(base64);
 
-            // Assert.True(decrypt == pass);
+            Assert.True(decrypt == base64);
 
             // PrivateObject obj = new PrivateObject(mailController);
             // var retVal = obj.Invoke("DecryptPassword");

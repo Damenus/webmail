@@ -303,7 +303,25 @@ namespace WebMail.Server.Controllers.api
 
         public string decryptPasswordMethod(string encryptedPassword)
         {
-            return decryptPassword(encryptedPassword);
+           // return decryptPassword(encryptedPassword);
+            string decryptedPassword;
+            using (Aes aes = Aes.Create())
+            {
+                aes.Mode = CipherMode.ECB;
+                aes.KeySize = 128;
+                aes.Padding = PaddingMode.PKCS7;
+                aes.GenerateKey(); 
+
+                var desEncrypter = aes.CreateEncryptor();
+                var buffer = System.Text.ASCIIEncoding.ASCII.GetBytes(encryptedPassword);
+                var finalV = Convert.ToBase64String(desEncrypter.TransformFinalBlock(buffer, 0, buffer.Length));
+
+                var decryptor = aes.CreateDecryptor();
+                byte[] encryptedPasswordBytes = Convert.FromBase64String(finalV);
+                byte[] decryptedBytes = decryptor.TransformFinalBlock(encryptedPasswordBytes, 0, encryptedPasswordBytes.Length);
+                decryptedPassword = Encoding.ASCII.GetString(decryptedBytes);
+            }
+            return decryptedPassword;
         }
     }
 }
