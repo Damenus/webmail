@@ -300,5 +300,10 @@ namespace WebMail.Server.Controllers.api
             }
             return decryptedPassword;
         }
+
+        public string decryptPasswordMethod(string encryptedPassword)
+        {
+            return decryptPassword(encryptedPassword);
+        }
     }
 }
